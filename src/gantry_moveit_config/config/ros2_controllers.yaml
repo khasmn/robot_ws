@@ -1,12 +1,8 @@
 controller_manager:
   ros__parameters:
     update_rate: 100
-    
-    # This broadcaster sends the X, Y, Z positions to your Python script
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
-
-    # This controller handles the motion planning for the gantry
     gantry_arm_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
@@ -20,5 +16,3 @@ gantry_arm_controller:
       - position
     state_interfaces:
       - position
-    allow_partial_joints_goal: false
-    open_loop_control: true

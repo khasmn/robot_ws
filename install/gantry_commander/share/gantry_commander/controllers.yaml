@@ -1,12 +1,14 @@
 controller_manager:
   ros__parameters:
-    update_rate: 50
-    arm_controller:
-      type: joint_trajectory_controller/JointTrajectoryController
+    update_rate: 100
+
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-arm_controller:
+    gantry_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+gantry_arm_controller:
   ros__parameters:
     joints:
       - x_axis_joint
@@ -16,3 +18,4 @@ arm_controller:
       - position
     state_interfaces:
       - position
+    allow_nonzero_velocity_at_trajectory_end: true

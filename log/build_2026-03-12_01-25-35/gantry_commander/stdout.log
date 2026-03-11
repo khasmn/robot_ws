@@ -1,0 +1,21 @@
+running egg_info
+writing ../../build/gantry_commander/gantry_commander.egg-info/PKG-INFO
+writing dependency_links to ../../build/gantry_commander/gantry_commander.egg-info/dependency_links.txt
+writing entry points to ../../build/gantry_commander/gantry_commander.egg-info/entry_points.txt
+writing requirements to ../../build/gantry_commander/gantry_commander.egg-info/requires.txt
+writing top-level names to ../../build/gantry_commander/gantry_commander.egg-info/top_level.txt
+reading manifest file '../../build/gantry_commander/gantry_commander.egg-info/SOURCES.txt'
+writing manifest file '../../build/gantry_commander/gantry_commander.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+copying gantry.urdf.xml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+running install_egg_info
+removing '/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../../build/gantry_commander/gantry_commander.egg-info to /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander-0.0.0-py3.12.egg-info
+running install_scripts
+Installing go_to_point script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+Installing serial_bridge script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+writing list of installed files to '/home/kha/robot_ws/build/gantry_commander/install.log'

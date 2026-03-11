@@ -1,0 +1,14 @@
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+moveit_simple_controller_manager:
+  controller_names:
+    - gantry_arm_controller
+
+  gantry_arm_controller:
+    type: FollowJointTrajectory
+    action_ns: follow_joint_trajectory
+    default: True
+    joints:
+      - x_axis_joint
+      - y_axis_joint
+      - z_axis_lift_joint

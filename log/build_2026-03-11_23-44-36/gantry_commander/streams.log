@@ -1,0 +1,26 @@
+[0.932s] Invoking command in '/home/kha/robot_ws/src/gantry_commander': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/gantry_commander build --build-base /home/kha/robot_ws/build/gantry_commander/build install --record /home/kha/robot_ws/build/gantry_commander/install.log --single-version-externally-managed install_data
+[1.237s] running egg_info
+[1.262s] writing ../../build/gantry_commander/gantry_commander.egg-info/PKG-INFO
+[1.263s] writing dependency_links to ../../build/gantry_commander/gantry_commander.egg-info/dependency_links.txt
+[1.263s] writing entry points to ../../build/gantry_commander/gantry_commander.egg-info/entry_points.txt
+[1.263s] writing requirements to ../../build/gantry_commander/gantry_commander.egg-info/requires.txt
+[1.263s] writing top-level names to ../../build/gantry_commander/gantry_commander.egg-info/top_level.txt
+[1.319s] reading manifest file '../../build/gantry_commander/gantry_commander.egg-info/SOURCES.txt'
+[1.321s] writing manifest file '../../build/gantry_commander/gantry_commander.egg-info/SOURCES.txt'
+[1.321s] running build
+[1.321s] running build_py
+[1.321s] copying gantry_commander/serial_bridge.py -> /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander
+[1.321s] running install
+[1.329s] running install_lib
+[1.357s] copying /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander/serial_bridge.py -> /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander
+[1.358s] byte-compiling /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander/serial_bridge.py to serial_bridge.cpython-312.pyc
+[1.359s] running install_data
+[1.359s] copying controllers.yaml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[1.359s] running install_egg_info
+[1.387s] removing '/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander-0.0.0-py3.12.egg-info' (and everything under it)
+[1.387s] Copying ../../build/gantry_commander/gantry_commander.egg-info to /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander-0.0.0-py3.12.egg-info
+[1.388s] running install_scripts
+[1.556s] Installing go_to_point script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+[1.556s] Installing serial_bridge script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+[1.556s] writing list of installed files to '/home/kha/robot_ws/build/gantry_commander/install.log'
+[1.578s] Invoked command in '/home/kha/robot_ws/src/gantry_commander' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/gantry_commander build --build-base /home/kha/robot_ws/build/gantry_commander/build install --record /home/kha/robot_ws/build/gantry_commander/install.log --single-version-externally-managed install_data

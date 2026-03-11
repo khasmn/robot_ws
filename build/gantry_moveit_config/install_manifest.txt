@@ -26,5 +26,6 @@
 /home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/config/kinematics.yaml
 /home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/config/gantry_robot.srdf
 /home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/config/pilz_cartesian_limits.yaml
+/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/config/moveit_controllers.yaml
 /home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/config/joint_limits.yaml
 /home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/.setup_assistant
