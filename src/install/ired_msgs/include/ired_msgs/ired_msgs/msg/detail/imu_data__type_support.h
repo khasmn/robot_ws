@@ -1,0 +1,1 @@
+/home/kha/robot_ws/src/build/ired_msgs/rosidl_generator_c/ired_msgs/msg/detail/imu_data__type_support.h

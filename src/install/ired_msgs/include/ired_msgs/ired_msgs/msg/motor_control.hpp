@@ -1,0 +1,1 @@
+/home/kha/robot_ws/src/build/ired_msgs/rosidl_generator_cpp/ired_msgs/msg/motor_control.hpp

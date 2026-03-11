@@ -1,0 +1,3 @@
+[console_scripts]
+go_to_point = gantry_commander.go_to_point:main
+serial_bridge = gantry_commander.serial_bridge:main

@@ -1,0 +1,67 @@
+[0.022s] Invoking command in '/home/kha/robot_ws/build/ros2_laser_scan_matcher': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/csm:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/kha/robot_ws/install/csm:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/kha/robot_ws/install/csm/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/kha/robot_ws/src/robot/ros2_laser_scan_matcher -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/kha/robot_ws/install/ros2_laser_scan_matcher
+[0.116s] -- The C compiler identification is GNU 13.3.0
+[0.212s] -- The CXX compiler identification is GNU 13.3.0
+[0.240s] -- Detecting C compiler ABI info
+[0.478s] -- Detecting C compiler ABI info - done
+[0.506s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.506s] -- Detecting C compile features
+[0.507s] -- Detecting C compile features - done
+[0.525s] -- Detecting CXX compiler ABI info
+[0.814s] -- Detecting CXX compiler ABI info - done
+[0.842s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.843s] -- Detecting CXX compile features
+[0.844s] -- Detecting CXX compile features - done
+[0.855s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[1.129s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[1.250s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.350s] -- Found sensor_msgs: 5.3.6 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+[1.446s] -- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[1.482s] -- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[1.520s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.563s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.743s] -- Found rclcpp: 28.1.13 (/opt/ros/jazzy/share/rclcpp/cmake)
+[1.852s] -- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[1.861s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[2.030s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+[2.067s] -- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") 
+[2.108s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.262s] -- Found nav_msgs: 5.3.6 (/opt/ros/jazzy/share/nav_msgs/cmake)
+[2.316s] -- Found tf2_ros: 0.36.16 (/opt/ros/jazzy/share/tf2_ros/cmake)
+[2.605s] -- Found tf2_geometry_msgs: 0.36.16 (/opt/ros/jazzy/share/tf2_geometry_msgs/cmake)
+[2.644s] -- Found eigen3_cmake_module: 0.3.0 (/opt/ros/jazzy/share/eigen3_cmake_module/cmake)
+[2.646s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[2.646s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[2.657s] -- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1") 
+[2.659s] -- Found csm: 0.0.0 (/home/kha/robot_ws/install/csm/share/csm/cmake)
+[2.866s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.83.0/BoostConfig.cmake (found version "1.83.0") found components: thread 
+[3.036s] -- Configuring done (3.0s)
+[3.082s] -- Generating done (0.0s)
+[3.091s] -- Build files have been written to: /home/kha/robot_ws/build/ros2_laser_scan_matcher
+[3.110s] Invoked command in '/home/kha/robot_ws/build/ros2_laser_scan_matcher' returned '0': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/csm:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/kha/robot_ws/install/csm:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/kha/robot_ws/install/csm/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/kha/robot_ws/src/robot/ros2_laser_scan_matcher -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/kha/robot_ws/install/ros2_laser_scan_matcher
+[3.113s] Invoking command in '/home/kha/robot_ws/build/ros2_laser_scan_matcher': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/csm:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/kha/robot_ws/install/csm:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/kha/robot_ws/install/csm/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/kha/robot_ws/build/ros2_laser_scan_matcher -- -j12 -l12
+[3.206s] [ 50%] [32mBuilding CXX object CMakeFiles/laser_scan_matcher.dir/src/laser_scan_matcher.cpp.o[0m
+[21.744s] [100%] [32m[1mLinking CXX executable laser_scan_matcher[0m
+[22.406s] [100%] Built target laser_scan_matcher
+[22.419s] Invoked command in '/home/kha/robot_ws/build/ros2_laser_scan_matcher' returned '0': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/csm:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/kha/robot_ws/install/csm:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/kha/robot_ws/install/csm/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/kha/robot_ws/build/ros2_laser_scan_matcher -- -j12 -l12
+[22.421s] Invoking command in '/home/kha/robot_ws/build/ros2_laser_scan_matcher': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/csm:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/kha/robot_ws/install/csm:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/kha/robot_ws/install/csm/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/kha/robot_ws/build/ros2_laser_scan_matcher
+[22.435s] -- Install configuration: ""
+[22.435s] -- Execute custom install script
+[22.436s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/lib/ros2_laser_scan_matcher/laser_scan_matcher
+[22.448s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/launch/laser_scan_matcher.launch.py
+[22.461s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/param/laser_scan_matcher.yaml
+[22.473s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ament_index/resource_index/package_run_dependencies/ros2_laser_scan_matcher
+[22.486s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ament_index/resource_index/parent_prefix_path/ros2_laser_scan_matcher
+[22.500s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/environment/ament_prefix_path.sh
+[22.514s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/environment/ament_prefix_path.dsv
+[22.528s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/environment/path.sh
+[22.544s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/environment/path.dsv
+[22.564s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/local_setup.bash
+[22.589s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/local_setup.sh
+[22.627s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/local_setup.zsh
+[22.665s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/local_setup.dsv
+[22.701s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/package.dsv
+[22.721s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ament_index/resource_index/packages/ros2_laser_scan_matcher
+[22.737s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/cmake/ros2_laser_scan_matcherConfig.cmake
+[22.749s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/cmake/ros2_laser_scan_matcherConfig-version.cmake
+[22.761s] -- Symlinking: /home/kha/robot_ws/install/ros2_laser_scan_matcher/share/ros2_laser_scan_matcher/package.xml
+[22.774s] Invoked command in '/home/kha/robot_ws/build/ros2_laser_scan_matcher' returned '0': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/csm:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/kha/robot_ws/install/csm:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com LD_LIBRARY_PATH=/home/kha/robot_ws/install/csm/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/kha/robot_ws/build/ros2_laser_scan_matcher

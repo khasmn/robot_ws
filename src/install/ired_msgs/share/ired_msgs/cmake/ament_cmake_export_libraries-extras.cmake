@@ -1,0 +1,1 @@
+/home/kha/robot_ws/src/build/ired_msgs/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake

@@ -1,0 +1,37 @@
+running develop
+Removing /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry-commander.egg-link (link to .)
+running egg_info
+writing ../../build/gantry_commander/gantry_commander.egg-info/PKG-INFO
+writing dependency_links to ../../build/gantry_commander/gantry_commander.egg-info/dependency_links.txt
+writing entry points to ../../build/gantry_commander/gantry_commander.egg-info/entry_points.txt
+writing requirements to ../../build/gantry_commander/gantry_commander.egg-info/requires.txt
+writing top-level names to ../../build/gantry_commander/gantry_commander.egg-info/top_level.txt
+reading manifest file '../../build/gantry_commander/gantry_commander.egg-info/SOURCES.txt'
+writing manifest file '../../build/gantry_commander/gantry_commander.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/kha/robot_ws/build/gantry_commander/build
+creating /home/kha/robot_ws/build/gantry_commander/build/lib
+creating /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander
+copying gantry_commander/__init__.py -> /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander
+copying gantry_commander/serial_bridge.py -> /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander
+running install
+running install_lib
+creating /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander
+copying /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander/__init__.py -> /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander
+copying /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander/serial_bridge.py -> /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander
+byte-compiling /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander/serial_bridge.py to serial_bridge.cpython-312.pyc
+running install_data
+copying resource/gantry_commander -> /home/kha/robot_ws/install/gantry_commander/share/ament_index/resource_index/packages
+copying package.xml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+copying launch/launch.py -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+copying launch/view_robot.launch.py -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+copying gantry.urdf.xml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+copying controllers.yaml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+running install_egg_info
+Copying ../../build/gantry_commander/gantry_commander.egg-info to /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander-0.0.0-py3.12.egg-info
+running install_scripts
+Installing go_to_point script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+Installing serial_bridge script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+writing list of installed files to '/home/kha/robot_ws/build/gantry_commander/install.log'

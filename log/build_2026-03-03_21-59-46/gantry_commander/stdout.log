@@ -1,0 +1,16 @@
+running develop
+running egg_info
+writing gantry_commander.egg-info/PKG-INFO
+writing dependency_links to gantry_commander.egg-info/dependency_links.txt
+writing entry points to gantry_commander.egg-info/entry_points.txt
+writing requirements to gantry_commander.egg-info/requires.txt
+writing top-level names to gantry_commander.egg-info/top_level.txt
+reading manifest file 'gantry_commander.egg-info/SOURCES.txt'
+writing manifest file 'gantry_commander.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry-commander.egg-link (link to .)
+Installing go_to_point script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+Installing serial_bridge script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+
+Installed /home/kha/robot_ws/build/gantry_commander
+running symlink_data

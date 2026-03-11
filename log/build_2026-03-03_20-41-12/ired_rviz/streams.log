@@ -1,0 +1,47 @@
+[0.391s] Invoking command in '/home/kha/robot_ws/build/ired_rviz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/kha/robot_ws/src/robot/ired_rviz -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/kha/robot_ws/install/ired_rviz
+[0.820s] -- The C compiler identification is GNU 13.3.0
+[0.820s] -- The CXX compiler identification is GNU 13.3.0
+[0.821s] -- Detecting C compiler ABI info
+[0.821s] -- Detecting C compiler ABI info - done
+[0.821s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.821s] -- Detecting C compile features
+[0.821s] -- Detecting C compile features - done
+[0.822s] -- Detecting CXX compiler ABI info
+[0.986s] -- Detecting CXX compiler ABI info - done
+[1.004s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.005s] -- Detecting CXX compile features
+[1.006s] -- Detecting CXX compile features - done
+[1.013s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[1.301s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[1.426s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.761s] -- Configuring done (1.4s)
+[1.769s] -- Generating done (0.0s)
+[1.770s] -- Build files have been written to: /home/kha/robot_ws/build/ired_rviz
+[1.778s] Invoked command in '/home/kha/robot_ws/build/ired_rviz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/kha/robot_ws/src/robot/ired_rviz -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/kha/robot_ws/install/ired_rviz
+[1.780s] Invoking command in '/home/kha/robot_ws/build/ired_rviz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/kha/robot_ws/build/ired_rviz -- -j12 -l12
+[1.857s] Invoked command in '/home/kha/robot_ws/build/ired_rviz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/kha/robot_ws/build/ired_rviz -- -j12 -l12
+[1.859s] Invoking command in '/home/kha/robot_ws/build/ired_rviz': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/kha/robot_ws/build/ired_rviz
+[1.872s] -- Install configuration: ""
+[1.873s] -- Execute custom install script
+[1.874s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/launch/navigation.launch.py
+[1.891s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/launch/slam.launch.py
+[1.908s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/rviz/bringup.rviz
+[1.925s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/rviz/navi.rviz
+[1.940s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/rviz/robot_urdf.rviz
+[1.956s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/rviz/slam.rviz
+[1.971s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ament_index/resource_index/package_run_dependencies/ired_rviz
+[1.992s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ament_index/resource_index/parent_prefix_path/ired_rviz
+[2.011s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/environment/ament_prefix_path.sh
+[2.030s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/environment/ament_prefix_path.dsv
+[2.048s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/environment/path.sh
+[2.066s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/environment/path.dsv
+[2.082s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/local_setup.bash
+[2.100s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/local_setup.sh
+[2.115s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/local_setup.zsh
+[2.131s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/local_setup.dsv
+[2.146s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/package.dsv
+[2.162s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ament_index/resource_index/packages/ired_rviz
+[2.178s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/cmake/ired_rvizConfig.cmake
+[2.194s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/cmake/ired_rvizConfig-version.cmake
+[2.210s] -- Symlinking: /home/kha/robot_ws/install/ired_rviz/share/ired_rviz/package.xml
+[2.228s] Invoked command in '/home/kha/robot_ws/build/ired_rviz' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/kha/robot_ws/build/ired_rviz

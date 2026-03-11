@@ -1,0 +1,41 @@
+[1.368s] Invoking command in '/home/kha/robot_ws/build/gantry_commander': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/kha/robot_ws/build/gantry_commander/build
+[1.778s] running develop
+[2.073s] Removing /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry-commander.egg-link (link to .)
+[2.100s] Invoked command in '/home/kha/robot_ws/build/gantry_commander' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/kha/robot_ws/build/gantry_commander/build
+[2.102s] Invoking command in '/home/kha/robot_ws/src/gantry_commander': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/gantry_commander build --build-base /home/kha/robot_ws/build/gantry_commander/build install --record /home/kha/robot_ws/build/gantry_commander/install.log --single-version-externally-managed install_data --force
+[2.459s] running egg_info
+[2.485s] writing ../../build/gantry_commander/gantry_commander.egg-info/PKG-INFO
+[2.485s] writing dependency_links to ../../build/gantry_commander/gantry_commander.egg-info/dependency_links.txt
+[2.486s] writing entry points to ../../build/gantry_commander/gantry_commander.egg-info/entry_points.txt
+[2.486s] writing requirements to ../../build/gantry_commander/gantry_commander.egg-info/requires.txt
+[2.486s] writing top-level names to ../../build/gantry_commander/gantry_commander.egg-info/top_level.txt
+[2.544s] reading manifest file '../../build/gantry_commander/gantry_commander.egg-info/SOURCES.txt'
+[2.545s] writing manifest file '../../build/gantry_commander/gantry_commander.egg-info/SOURCES.txt'
+[2.545s] running build
+[2.545s] running build_py
+[2.546s] creating /home/kha/robot_ws/build/gantry_commander/build
+[2.546s] creating /home/kha/robot_ws/build/gantry_commander/build/lib
+[2.546s] creating /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander
+[2.546s] copying gantry_commander/__init__.py -> /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander
+[2.546s] copying gantry_commander/serial_bridge.py -> /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander
+[2.546s] running install
+[2.555s] running install_lib
+[2.582s] creating /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander
+[2.583s] copying /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander/__init__.py -> /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander
+[2.583s] copying /home/kha/robot_ws/build/gantry_commander/build/lib/gantry_commander/serial_bridge.py -> /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander
+[2.583s] byte-compiling /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander/__init__.py to __init__.cpython-312.pyc
+[2.584s] byte-compiling /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander/serial_bridge.py to serial_bridge.cpython-312.pyc
+[2.585s] running install_data
+[2.585s] copying resource/gantry_commander -> /home/kha/robot_ws/install/gantry_commander/share/ament_index/resource_index/packages
+[2.585s] copying package.xml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.586s] copying launch/launch.py -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.586s] copying launch/view_robot.launch.py -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.586s] copying gantry.urdf.xml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.586s] copying controllers.yaml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.586s] running install_egg_info
+[2.618s] Copying ../../build/gantry_commander/gantry_commander.egg-info to /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry_commander-0.0.0-py3.12.egg-info
+[2.619s] running install_scripts
+[2.792s] Installing go_to_point script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+[2.792s] Installing serial_bridge script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+[2.793s] writing list of installed files to '/home/kha/robot_ws/build/gantry_commander/install.log'
+[2.822s] Invoked command in '/home/kha/robot_ws/src/gantry_commander' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/gantry_commander build --build-base /home/kha/robot_ws/build/gantry_commander/build install --record /home/kha/robot_ws/build/gantry_commander/install.log --single-version-externally-managed install_data --force

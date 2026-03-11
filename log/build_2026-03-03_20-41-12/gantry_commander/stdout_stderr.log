@@ -1,0 +1,23 @@
+running develop
+running egg_info
+creating gantry_commander.egg-info
+writing gantry_commander.egg-info/PKG-INFO
+writing dependency_links to gantry_commander.egg-info/dependency_links.txt
+writing requirements to gantry_commander.egg-info/requires.txt
+writing top-level names to gantry_commander.egg-info/top_level.txt
+writing manifest file 'gantry_commander.egg-info/SOURCES.txt'
+reading manifest file 'gantry_commander.egg-info/SOURCES.txt'
+writing manifest file 'gantry_commander.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry-commander.egg-link (link to .)
+
+Installed /home/kha/robot_ws/build/gantry_commander
+running symlink_data
+creating /home/kha/robot_ws/install/gantry_commander/share/ament_index
+creating /home/kha/robot_ws/install/gantry_commander/share/ament_index/resource_index
+creating /home/kha/robot_ws/install/gantry_commander/share/ament_index/resource_index/packages
+symbolically linking /home/kha/robot_ws/build/gantry_commander/resource/gantry_commander -> /home/kha/robot_ws/install/gantry_commander/share/ament_index/resource_index/packages
+symbolically linking /home/kha/robot_ws/build/gantry_commander/package.xml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+symbolically linking /home/kha/robot_ws/build/gantry_commander/launch/view_robot.launch.py -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+symbolically linking /home/kha/robot_ws/build/gantry_commander/gantry.urdf.xml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+symbolically linking /home/kha/robot_ws/build/gantry_commander/controllers.yaml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander

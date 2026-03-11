@@ -1,0 +1,41 @@
+[1.659s] Invoking command in '/home/kha/robot_ws/build/ired_teleop': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/ired_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/kha/robot_ws/build/ired_teleop/build
+[2.106s] running develop
+[2.452s] Removing /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired-teleop.egg-link (link to .)
+[2.483s] Invoked command in '/home/kha/robot_ws/build/ired_teleop' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/ired_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/kha/robot_ws/build/ired_teleop/build
+[2.484s] Invoking command in '/home/kha/robot_ws/src/robot/ired_teleop': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/ired_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/ired_teleop build --build-base /home/kha/robot_ws/build/ired_teleop/build install --record /home/kha/robot_ws/build/ired_teleop/install.log --single-version-externally-managed install_data --force
+[2.857s] running egg_info
+[2.886s] writing ../../../build/ired_teleop/ired_teleop.egg-info/PKG-INFO
+[2.886s] writing dependency_links to ../../../build/ired_teleop/ired_teleop.egg-info/dependency_links.txt
+[2.886s] writing entry points to ../../../build/ired_teleop/ired_teleop.egg-info/entry_points.txt
+[2.887s] writing requirements to ../../../build/ired_teleop/ired_teleop.egg-info/requires.txt
+[2.887s] writing top-level names to ../../../build/ired_teleop/ired_teleop.egg-info/top_level.txt
+[2.944s] reading manifest file '../../../build/ired_teleop/ired_teleop.egg-info/SOURCES.txt'
+[2.945s] writing manifest file '../../../build/ired_teleop/ired_teleop.egg-info/SOURCES.txt'
+[2.945s] running build
+[2.945s] running build_py
+[2.945s] creating /home/kha/robot_ws/build/ired_teleop/build
+[2.945s] creating /home/kha/robot_ws/build/ired_teleop/build/lib
+[2.945s] creating /home/kha/robot_ws/build/ired_teleop/build/lib/ired_teleop
+[2.945s] copying ired_teleop/__init__.py -> /home/kha/robot_ws/build/ired_teleop/build/lib/ired_teleop
+[2.946s] creating /home/kha/robot_ws/build/ired_teleop/build/lib/ired_teleop/script
+[2.946s] copying ired_teleop/script/teleop_keyboard.py -> /home/kha/robot_ws/build/ired_teleop/build/lib/ired_teleop/script
+[2.946s] copying ired_teleop/script/__init__.py -> /home/kha/robot_ws/build/ired_teleop/build/lib/ired_teleop/script
+[2.946s] running install
+[2.954s] running install_lib
+[2.986s] creating /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired_teleop
+[2.986s] creating /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired_teleop/script
+[2.986s] copying /home/kha/robot_ws/build/ired_teleop/build/lib/ired_teleop/script/teleop_keyboard.py -> /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired_teleop/script
+[2.986s] copying /home/kha/robot_ws/build/ired_teleop/build/lib/ired_teleop/script/__init__.py -> /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired_teleop/script
+[2.986s] copying /home/kha/robot_ws/build/ired_teleop/build/lib/ired_teleop/__init__.py -> /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired_teleop
+[2.987s] byte-compiling /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired_teleop/script/teleop_keyboard.py to teleop_keyboard.cpython-312.pyc
+[2.988s] byte-compiling /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired_teleop/script/__init__.py to __init__.cpython-312.pyc
+[2.989s] byte-compiling /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired_teleop/__init__.py to __init__.cpython-312.pyc
+[2.989s] running install_data
+[2.989s] copying resource/ired_teleop -> /home/kha/robot_ws/install/ired_teleop/share/ament_index/resource_index/packages
+[2.989s] copying package.xml -> /home/kha/robot_ws/install/ired_teleop/share/ired_teleop
+[2.989s] running install_egg_info
+[3.021s] Copying ../../../build/ired_teleop/ired_teleop.egg-info to /home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages/ired_teleop-2.0.1-py3.12.egg-info
+[3.022s] running install_scripts
+[3.203s] Installing teleop_keyboard script to /home/kha/robot_ws/install/ired_teleop/lib/ired_teleop
+[3.203s] writing list of installed files to '/home/kha/robot_ws/build/ired_teleop/install.log'
+[3.232s] Invoked command in '/home/kha/robot_ws/src/robot/ired_teleop' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/ired_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/ired_teleop build --build-base /home/kha/robot_ws/build/ired_teleop/build install --record /home/kha/robot_ws/build/ired_teleop/install.log --single-version-externally-managed install_data --force

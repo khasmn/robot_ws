@@ -1,0 +1,1 @@
+/home/kha/robot_ws/src/robot/rplidar_ros/launch/rplidar_a1_launch.py

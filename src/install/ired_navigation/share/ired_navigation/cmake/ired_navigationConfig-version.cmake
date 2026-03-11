@@ -1,0 +1,1 @@
+/home/kha/robot_ws/src/build/ired_navigation/ament_cmake_core/ired_navigationConfig-version.cmake

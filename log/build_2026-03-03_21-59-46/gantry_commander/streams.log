@@ -1,0 +1,18 @@
+[1.089s] Invoking command in '/home/kha/robot_ws/build/gantry_commander': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/kha/robot_ws/build/gantry_commander/build --no-deps symlink_data
+[1.542s] running develop
+[1.832s] running egg_info
+[1.858s] writing gantry_commander.egg-info/PKG-INFO
+[1.858s] writing dependency_links to gantry_commander.egg-info/dependency_links.txt
+[1.858s] writing entry points to gantry_commander.egg-info/entry_points.txt
+[1.859s] writing requirements to gantry_commander.egg-info/requires.txt
+[1.859s] writing top-level names to gantry_commander.egg-info/top_level.txt
+[1.915s] reading manifest file 'gantry_commander.egg-info/SOURCES.txt'
+[1.916s] writing manifest file 'gantry_commander.egg-info/SOURCES.txt'
+[1.950s] running build_ext
+[1.950s] Creating /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry-commander.egg-link (link to .)
+[1.951s] Installing go_to_point script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+[1.951s] Installing serial_bridge script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+[1.952s] 
+[1.952s] Installed /home/kha/robot_ws/build/gantry_commander
+[1.952s] running symlink_data
+[1.985s] Invoked command in '/home/kha/robot_ws/build/gantry_commander' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/kha/robot_ws/build/gantry_commander/build --no-deps symlink_data

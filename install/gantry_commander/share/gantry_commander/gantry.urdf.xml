@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="gantry_robot">
+
+  <material name="grey"><color rgba="0.5 0.5 0.5 1"/></material>
+  <material name="blue"><color rgba="0 0 0.8 1"/></material>
+  <material name="red"><color rgba="0.8 0 0 1"/></material>
+  <material name="yellow"><color rgba="1 1 0 1"/></material>
+  <material name="green"><color rgba="0 0.8 0 1"/></material>
+
+  <link name="base_link">
+    <visual>
+      <geometry><box size="0.05 0.45 0.02"/></geometry> <material name="green"/>
+    </visual>
+  </link>
+
+  <joint name="y_axis_joint" type="prismatic">
+    <parent link="base_link"/>
+    <child link="x_rail_assembly"/>
+    <origin xyz="0 0.18 0.02" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="0" upper="0.36" effort="100" velocity="1.0"/>
+  </joint>
+
+  <link name="x_rail_assembly">
+    <visual>
+      <geometry><box size="0.4 0.05 0.02"/></geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <joint name="x_axis_joint" type="prismatic">
+    <parent link="x_rail_assembly"/>
+    <child link="x_slider"/>
+    <origin xyz="0.165 0 0.02" rpy="0 0 0"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="0" upper="0.33" effort="100" velocity="1.0"/>
+  </joint>
+
+  <link name="x_slider">
+    <visual>
+      <geometry><box size="0.06 0.06 0.02"/></geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="vertical_arm">
+    <visual>
+      <origin xyz="0 0 0.075" rpy="0 0 0"/> 
+      <geometry><box size="0.03 0.03 0.15"/></geometry>
+      <material name="yellow"/>
+    </visual>
+  </link>
+
+  <joint name="arm_to_x_joint" type="fixed">
+    <parent link="x_slider"/>
+    <child link="vertical_arm"/>
+    <origin xyz="0 0 0.01" rpy="0 0 0"/>
+  </joint>
+
+  <link name="gripper_body">
+    <visual>
+      <geometry><box size="0.04 0.04 0.04"/></geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="z_axis_lift_joint" type="prismatic">
+    <parent link="vertical_arm"/>
+    <child link="gripper_body"/>
+    <origin xyz="0 0 0.15" rpy="0 0 0"/> 
+    <axis xyz="0 0 -1"/> 
+    <limit lower="0" upper="0.15" effort="100" velocity="1.0"/>
+  </joint>
+
+  <link name="camera_tower_main">
+    <visual>
+      <geometry><box size="0.04 0.04 0.5"/></geometry>
+      <origin xyz="0 0 0.25"/> <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry><box size="0.04 0.04 0.5"/></geometry>
+      <origin xyz="0 0 0.25"/>
+    </collision>
+  </link>
+
+  <joint name="base_to_tower" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_tower_main"/>
+    <origin xyz="0 0.22 0.01"/> 
+  </joint>
+
+  <link name="camera_extension_arm">
+    <visual>
+      <geometry><box size="0.03 0.03 0.405"/></geometry>
+      <origin xyz="0 0 0.2025"/> <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry><box size="0.03 0.03 0.405"/></geometry>
+      <origin xyz="0 0 0.2025"/>
+    </collision>
+  </link>
+
+  <joint name="tower_to_extension" type="fixed">
+    <parent link="camera_tower_main"/>
+    <child link="camera_extension_arm"/>
+    <origin xyz="0 0 0.5" rpy="0.6632 0 0"/> 
+  </joint>
+
+  <link name="camera_link">
+    <visual>
+      <geometry><box size="0.06 0.04 0.02"/></geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry><box size="0.06 0.04 0.02"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="extension_to_camera" type="fixed">
+    <parent link="camera_extension_arm"/>
+    <child link="camera_link"/>
+    <origin xyz="0 0 0.405" rpy="0 0 0"/>
+  </joint>
+
+  <ros2_control name="GantrySystem" type="system">
+    <hardware>
+      <plugin>mock_components/GenericSystem</plugin>
+    </hardware>
+    <joint name="x_axis_joint">
+      <command_interface name="position">
+        <param name="min">0</param>
+        <param name="max">0.33</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="y_axis_joint">
+      <command_interface name="position">
+        <param name="min">0</param>
+        <param name="max">0.36</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="z_axis_lift_joint">
+      <command_interface name="position">
+        <param name="min">0</param>
+        <param name="max">0.15</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+  </ros2_control>
+
+</robot>

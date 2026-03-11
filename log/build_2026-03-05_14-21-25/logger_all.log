@@ -1,0 +1,263 @@
+[0.104s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'gantry_moveit_config']
+[0.104s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=12, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['gantry_moveit_config'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x740208f9e510>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x740208f9e2a0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x740208f9e2a0>>, mixin_verb=('build',))
+[0.142s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.142s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.142s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.142s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.142s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.142s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.142s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/kha/robot_ws'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.142s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.143s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.166s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extensions ['ignore', 'ignore_ament_install']
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extension 'ignore'
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) ignored
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_commander) by extensions ['ignore', 'ignore_ament_install']
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_commander) by extension 'ignore'
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_commander) by extension 'ignore_ament_install'
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_commander) by extensions ['colcon_pkg']
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_commander) by extension 'colcon_pkg'
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_commander) by extensions ['colcon_meta']
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_commander) by extension 'colcon_meta'
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_commander) by extensions ['ros']
+[0.167s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_commander) by extension 'ros'
+[0.169s] DEBUG:colcon.colcon_core.package_identification:Package 'src/gantry_commander' with type 'ros.ament_python' and name 'gantry_commander'
+[0.169s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_moveit_config) by extensions ['ignore', 'ignore_ament_install']
+[0.169s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_moveit_config) by extension 'ignore'
+[0.169s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_moveit_config) by extension 'ignore_ament_install'
+[0.169s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_moveit_config) by extensions ['colcon_pkg']
+[0.169s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_moveit_config) by extension 'colcon_pkg'
+[0.169s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_moveit_config) by extensions ['colcon_meta']
+[0.169s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_moveit_config) by extension 'colcon_meta'
+[0.169s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_moveit_config) by extensions ['ros']
+[0.169s] Level 1:colcon.colcon_core.package_identification:_identify(src/gantry_moveit_config) by extension 'ros'
+[0.170s] DEBUG:colcon.colcon_core.package_identification:Package 'src/gantry_moveit_config' with type 'ros.ament_cmake' and name 'gantry_moveit_config'
+[0.170s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extensions ['ignore', 'ignore_ament_install']
+[0.170s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extension 'ignore'
+[0.170s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) ignored
+[0.170s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extensions ['ignore', 'ignore_ament_install']
+[0.170s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extension 'ignore'
+[0.170s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) ignored
+[0.170s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extensions ['ignore', 'ignore_ament_install']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extension 'ignore'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extension 'ignore_ament_install'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extensions ['colcon_pkg']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extension 'colcon_pkg'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extensions ['colcon_meta']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extension 'colcon_meta'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extensions ['ros']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extension 'ros'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extensions ['cmake', 'python']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extension 'cmake'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extension 'python'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extensions ['python_setup_py']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot) by extension 'python_setup_py'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/cms) by extensions ['ignore', 'ignore_ament_install']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/cms) by extension 'ignore'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/cms) by extension 'ignore_ament_install'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/cms) by extensions ['colcon_pkg']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/cms) by extension 'colcon_pkg'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/cms) by extensions ['colcon_meta']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/cms) by extension 'colcon_meta'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/cms) by extensions ['ros']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/cms) by extension 'ros'
+[0.172s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot/cms' with type 'ros.ament_cmake' and name 'csm'
+[0.172s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_bringup) by extensions ['ignore', 'ignore_ament_install']
+[0.172s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_bringup) by extension 'ignore'
+[0.172s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_bringup) by extension 'ignore_ament_install'
+[0.172s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_bringup) by extensions ['colcon_pkg']
+[0.172s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_bringup) by extension 'colcon_pkg'
+[0.172s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_bringup) by extensions ['colcon_meta']
+[0.172s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_bringup) by extension 'colcon_meta'
+[0.172s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_bringup) by extensions ['ros']
+[0.172s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_bringup) by extension 'ros'
+[0.173s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot/ired_bringup' with type 'ros.ament_cmake' and name 'ired_bringup'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_msgs) by extension 'ignore'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_msgs) by extension 'ignore_ament_install'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_msgs) by extensions ['colcon_pkg']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_msgs) by extension 'colcon_pkg'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_msgs) by extensions ['colcon_meta']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_msgs) by extension 'colcon_meta'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_msgs) by extensions ['ros']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_msgs) by extension 'ros'
+[0.174s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot/ired_msgs' with type 'ros.ament_cmake' and name 'ired_msgs'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_navigation) by extensions ['ignore', 'ignore_ament_install']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_navigation) by extension 'ignore'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_navigation) by extension 'ignore_ament_install'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_navigation) by extensions ['colcon_pkg']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_navigation) by extension 'colcon_pkg'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_navigation) by extensions ['colcon_meta']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_navigation) by extension 'colcon_meta'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_navigation) by extensions ['ros']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_navigation) by extension 'ros'
+[0.175s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot/ired_navigation' with type 'ros.ament_cmake' and name 'ired_navigation'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_rviz) by extensions ['ignore', 'ignore_ament_install']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_rviz) by extension 'ignore'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_rviz) by extension 'ignore_ament_install'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_rviz) by extensions ['colcon_pkg']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_rviz) by extension 'colcon_pkg'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_rviz) by extensions ['colcon_meta']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_rviz) by extension 'colcon_meta'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_rviz) by extensions ['ros']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_rviz) by extension 'ros'
+[0.176s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot/ired_rviz' with type 'ros.ament_cmake' and name 'ired_rviz'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_teleop) by extensions ['ignore', 'ignore_ament_install']
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_teleop) by extension 'ignore'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_teleop) by extension 'ignore_ament_install'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_teleop) by extensions ['colcon_pkg']
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_teleop) by extension 'colcon_pkg'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_teleop) by extensions ['colcon_meta']
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_teleop) by extension 'colcon_meta'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_teleop) by extensions ['ros']
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ired_teleop) by extension 'ros'
+[0.177s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot/ired_teleop' with type 'ros.ament_python' and name 'ired_teleop'
+[0.177s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ros2_laser_scan_matcher) by extensions ['ignore', 'ignore_ament_install']
+[0.177s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ros2_laser_scan_matcher) by extension 'ignore'
+[0.177s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ros2_laser_scan_matcher) by extension 'ignore_ament_install'
+[0.177s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ros2_laser_scan_matcher) by extensions ['colcon_pkg']
+[0.177s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ros2_laser_scan_matcher) by extension 'colcon_pkg'
+[0.177s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ros2_laser_scan_matcher) by extensions ['colcon_meta']
+[0.177s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ros2_laser_scan_matcher) by extension 'colcon_meta'
+[0.177s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ros2_laser_scan_matcher) by extensions ['ros']
+[0.177s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/ros2_laser_scan_matcher) by extension 'ros'
+[0.177s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot/ros2_laser_scan_matcher' with type 'ros.ament_cmake' and name 'ros2_laser_scan_matcher'
+[0.178s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/rplidar_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.178s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/rplidar_ros) by extension 'ignore'
+[0.178s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/rplidar_ros) by extension 'ignore_ament_install'
+[0.178s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/rplidar_ros) by extensions ['colcon_pkg']
+[0.178s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/rplidar_ros) by extension 'colcon_pkg'
+[0.178s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/rplidar_ros) by extensions ['colcon_meta']
+[0.178s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/rplidar_ros) by extension 'colcon_meta'
+[0.178s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/rplidar_ros) by extensions ['ros']
+[0.178s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot/rplidar_ros) by extension 'ros'
+[0.178s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot/rplidar_ros' with type 'ros.ament_cmake' and name 'rplidar_ros'
+[0.178s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.178s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.178s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.178s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.178s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.195s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'csm' in 'src/robot/cms'
+[0.195s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'gantry_commander' in 'src/gantry_commander'
+[0.195s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'ired_msgs' in 'src/robot/ired_msgs'
+[0.195s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'ired_navigation' in 'src/robot/ired_navigation'
+[0.195s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'ired_rviz' in 'src/robot/ired_rviz'
+[0.195s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'ired_teleop' in 'src/robot/ired_teleop'
+[0.195s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'rplidar_ros' in 'src/robot/rplidar_ros'
+[0.195s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'ired_bringup' in 'src/robot/ired_bringup'
+[0.195s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'ros2_laser_scan_matcher' in 'src/robot/ros2_laser_scan_matcher'
+[0.195s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.195s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.197s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 9 installed packages in /home/kha/robot_ws/install
+[0.200s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 455 installed packages in /opt/ros/jazzy
+[0.200s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.268s] Level 5:colcon.colcon_core.verb:set package 'gantry_moveit_config' build argument 'cmake_args' from command line to 'None'
+[0.268s] Level 5:colcon.colcon_core.verb:set package 'gantry_moveit_config' build argument 'cmake_target' from command line to 'None'
+[0.268s] Level 5:colcon.colcon_core.verb:set package 'gantry_moveit_config' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.268s] Level 5:colcon.colcon_core.verb:set package 'gantry_moveit_config' build argument 'cmake_clean_cache' from command line to 'False'
+[0.268s] Level 5:colcon.colcon_core.verb:set package 'gantry_moveit_config' build argument 'cmake_clean_first' from command line to 'False'
+[0.268s] Level 5:colcon.colcon_core.verb:set package 'gantry_moveit_config' build argument 'cmake_force_configure' from command line to 'False'
+[0.268s] Level 5:colcon.colcon_core.verb:set package 'gantry_moveit_config' build argument 'ament_cmake_args' from command line to 'None'
+[0.268s] Level 5:colcon.colcon_core.verb:set package 'gantry_moveit_config' build argument 'catkin_cmake_args' from command line to 'None'
+[0.268s] Level 5:colcon.colcon_core.verb:set package 'gantry_moveit_config' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.268s] DEBUG:colcon.colcon_core.verb:Building package 'gantry_moveit_config' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kha/robot_ws/build/gantry_moveit_config', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kha/robot_ws/install/gantry_moveit_config', 'merge_install': False, 'path': '/home/kha/robot_ws/src/gantry_moveit_config', 'symlink_install': False, 'test_result_base': None}
+[0.269s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.269s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.269s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kha/robot_ws/src/gantry_moveit_config' with build type 'ament_cmake'
+[0.270s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kha/robot_ws/src/gantry_moveit_config'
+[0.271s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.272s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.272s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.284s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kha/robot_ws/build/gantry_moveit_config': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/gantry_commander:/home/kha/robot_ws/install/rplidar_ros:/home/kha/robot_ws/install/ros2_laser_scan_matcher:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/ired_rviz:/home/kha/robot_ws/install/ired_navigation:/home/kha/robot_ws/install/ired_bringup:/home/kha/robot_ws/install/ired_msgs:/home/kha/robot_ws/install/csm:/opt/ros/jazzy CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:/home/kha/robot_ws/build/ired_teleop:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:/home/kha/robot_ws/install/ired_msgs/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake /home/kha/robot_ws/src/gantry_moveit_config -DCMAKE_INSTALL_PREFIX=/home/kha/robot_ws/install/gantry_moveit_config
+[1.529s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kha/robot_ws/build/gantry_moveit_config' returned '0': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/gantry_commander:/home/kha/robot_ws/install/rplidar_ros:/home/kha/robot_ws/install/ros2_laser_scan_matcher:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/ired_rviz:/home/kha/robot_ws/install/ired_navigation:/home/kha/robot_ws/install/ired_bringup:/home/kha/robot_ws/install/ired_msgs:/home/kha/robot_ws/install/csm:/opt/ros/jazzy CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:/home/kha/robot_ws/build/ired_teleop:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:/home/kha/robot_ws/install/ired_msgs/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake /home/kha/robot_ws/src/gantry_moveit_config -DCMAKE_INSTALL_PREFIX=/home/kha/robot_ws/install/gantry_moveit_config
+[1.530s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kha/robot_ws/build/gantry_moveit_config': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/gantry_commander:/home/kha/robot_ws/install/rplidar_ros:/home/kha/robot_ws/install/ros2_laser_scan_matcher:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/ired_rviz:/home/kha/robot_ws/install/ired_navigation:/home/kha/robot_ws/install/ired_bringup:/home/kha/robot_ws/install/ired_msgs:/home/kha/robot_ws/install/csm:/opt/ros/jazzy CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:/home/kha/robot_ws/build/ired_teleop:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:/home/kha/robot_ws/install/ired_msgs/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake --build /home/kha/robot_ws/build/gantry_moveit_config -- -j12 -l12
+[1.571s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kha/robot_ws/build/gantry_moveit_config' returned '0': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/gantry_commander:/home/kha/robot_ws/install/rplidar_ros:/home/kha/robot_ws/install/ros2_laser_scan_matcher:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/ired_rviz:/home/kha/robot_ws/install/ired_navigation:/home/kha/robot_ws/install/ired_bringup:/home/kha/robot_ws/install/ired_msgs:/home/kha/robot_ws/install/csm:/opt/ros/jazzy CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:/home/kha/robot_ws/build/ired_teleop:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:/home/kha/robot_ws/install/ired_msgs/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake --build /home/kha/robot_ws/build/gantry_moveit_config -- -j12 -l12
+[1.581s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kha/robot_ws/build/gantry_moveit_config': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/gantry_commander:/home/kha/robot_ws/install/rplidar_ros:/home/kha/robot_ws/install/ros2_laser_scan_matcher:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/ired_rviz:/home/kha/robot_ws/install/ired_navigation:/home/kha/robot_ws/install/ired_bringup:/home/kha/robot_ws/install/ired_msgs:/home/kha/robot_ws/install/csm:/opt/ros/jazzy CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:/home/kha/robot_ws/build/ired_teleop:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:/home/kha/robot_ws/install/ired_msgs/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake --install /home/kha/robot_ws/build/gantry_moveit_config
+[1.596s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(gantry_moveit_config)
+[1.596s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kha/robot_ws/build/gantry_moveit_config' returned '0': AMENT_PREFIX_PATH=/home/kha/robot_ws/install/gantry_commander:/home/kha/robot_ws/install/rplidar_ros:/home/kha/robot_ws/install/ros2_laser_scan_matcher:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/ired_rviz:/home/kha/robot_ws/install/ired_navigation:/home/kha/robot_ws/install/ired_bringup:/home/kha/robot_ws/install/ired_msgs:/home/kha/robot_ws/install/csm:/opt/ros/jazzy CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:/home/kha/robot_ws/build/ired_teleop:/home/kha/robot_ws/install/ired_teleop/lib/python3.12/site-packages:/home/kha/robot_ws/install/ired_msgs/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake --install /home/kha/robot_ws/build/gantry_moveit_config
+[1.598s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config' for CMake module files
+[1.598s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config' for CMake config files
+[1.599s] Level 1:colcon.colcon_core.shell:create_environment_hook('gantry_moveit_config', 'cmake_prefix_path')
+[1.599s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/hook/cmake_prefix_path.ps1'
+[1.599s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/hook/cmake_prefix_path.dsv'
+[1.600s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/hook/cmake_prefix_path.sh'
+[1.600s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config/bin'
+[1.600s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config/lib/pkgconfig/gantry_moveit_config.pc'
+[1.601s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config/lib/python3.12/site-packages'
+[1.601s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config/bin'
+[1.602s] INFO:colcon.colcon_core.shell:Creating package script '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.ps1'
+[1.602s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.dsv'
+[1.603s] INFO:colcon.colcon_core.shell:Creating package script '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.sh'
+[1.604s] INFO:colcon.colcon_core.shell:Creating package script '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.bash'
+[1.604s] INFO:colcon.colcon_core.shell:Creating package script '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.zsh'
+[1.605s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kha/robot_ws/install/gantry_moveit_config/share/colcon-core/packages/gantry_moveit_config)
+[1.605s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(gantry_moveit_config)
+[1.605s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config' for CMake module files
+[1.606s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config' for CMake config files
+[1.606s] Level 1:colcon.colcon_core.shell:create_environment_hook('gantry_moveit_config', 'cmake_prefix_path')
+[1.606s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/hook/cmake_prefix_path.ps1'
+[1.607s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/hook/cmake_prefix_path.dsv'
+[1.607s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/hook/cmake_prefix_path.sh'
+[1.607s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config/bin'
+[1.607s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config/lib/pkgconfig/gantry_moveit_config.pc'
+[1.608s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config/lib/python3.12/site-packages'
+[1.608s] Level 1:colcon.colcon_core.environment:checking '/home/kha/robot_ws/install/gantry_moveit_config/bin'
+[1.608s] INFO:colcon.colcon_core.shell:Creating package script '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.ps1'
+[1.608s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.dsv'
+[1.609s] INFO:colcon.colcon_core.shell:Creating package script '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.sh'
+[1.609s] INFO:colcon.colcon_core.shell:Creating package script '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.bash'
+[1.609s] INFO:colcon.colcon_core.shell:Creating package script '/home/kha/robot_ws/install/gantry_moveit_config/share/gantry_moveit_config/package.zsh'
+[1.610s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kha/robot_ws/install/gantry_moveit_config/share/colcon-core/packages/gantry_moveit_config)
+[1.610s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.610s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.610s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.610s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.617s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.617s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.617s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.633s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.633s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/kha/robot_ws/install/local_setup.ps1'
+[1.634s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/kha/robot_ws/install/_local_setup_util_ps1.py'
+[1.635s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/kha/robot_ws/install/setup.ps1'
+[1.636s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/kha/robot_ws/install/local_setup.sh'
+[1.636s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/kha/robot_ws/install/_local_setup_util_sh.py'
+[1.637s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/kha/robot_ws/install/setup.sh'
+[1.638s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/kha/robot_ws/install/local_setup.bash'
+[1.639s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/kha/robot_ws/install/setup.bash'
+[1.640s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/kha/robot_ws/install/local_setup.zsh'
+[1.640s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/kha/robot_ws/install/setup.zsh'

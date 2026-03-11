@@ -1,0 +1,29 @@
+[1.197s] Invoking command in '/home/kha/robot_ws/build/gantry_commander': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/kha/robot_ws/build/gantry_commander/build --no-deps symlink_data
+[1.682s] running develop
+[1.978s] running egg_info
+[1.978s] creating gantry_commander.egg-info
+[2.004s] writing gantry_commander.egg-info/PKG-INFO
+[2.004s] writing dependency_links to gantry_commander.egg-info/dependency_links.txt
+[2.005s] writing entry points to gantry_commander.egg-info/entry_points.txt
+[2.005s] writing requirements to gantry_commander.egg-info/requires.txt
+[2.005s] writing top-level names to gantry_commander.egg-info/top_level.txt
+[2.005s] writing manifest file 'gantry_commander.egg-info/SOURCES.txt'
+[2.066s] reading manifest file 'gantry_commander.egg-info/SOURCES.txt'
+[2.067s] writing manifest file 'gantry_commander.egg-info/SOURCES.txt'
+[2.094s] running build_ext
+[2.094s] Creating /home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages/gantry-commander.egg-link (link to .)
+[2.095s] Installing go_to_point script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+[2.096s] Installing serial_bridge script to /home/kha/robot_ws/install/gantry_commander/lib/gantry_commander
+[2.096s] 
+[2.097s] Installed /home/kha/robot_ws/build/gantry_commander
+[2.097s] running symlink_data
+[2.097s] creating /home/kha/robot_ws/install/gantry_commander/share/ament_index
+[2.097s] creating /home/kha/robot_ws/install/gantry_commander/share/ament_index/resource_index
+[2.098s] creating /home/kha/robot_ws/install/gantry_commander/share/ament_index/resource_index/packages
+[2.098s] symbolically linking /home/kha/robot_ws/build/gantry_commander/resource/gantry_commander -> /home/kha/robot_ws/install/gantry_commander/share/ament_index/resource_index/packages
+[2.098s] symbolically linking /home/kha/robot_ws/build/gantry_commander/package.xml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.098s] symbolically linking /home/kha/robot_ws/build/gantry_commander/launch/launch.py -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.098s] symbolically linking /home/kha/robot_ws/build/gantry_commander/launch/view_robot.launch.py -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.098s] symbolically linking /home/kha/robot_ws/build/gantry_commander/gantry.urdf.xml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.098s] symbolically linking /home/kha/robot_ws/build/gantry_commander/controllers.yaml -> /home/kha/robot_ws/install/gantry_commander/share/gantry_commander
+[2.134s] Invoked command in '/home/kha/robot_ws/build/gantry_commander' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/kha/robot_ws/build/gantry_commander/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kha/robot_ws/install/gantry_commander/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/kha/robot_ws/build/gantry_commander/build --no-deps symlink_data

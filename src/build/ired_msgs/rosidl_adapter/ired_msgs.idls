@@ -1,0 +1,5 @@
+/home/kha/robot_ws/src/build/ired_msgs/rosidl_adapter/ired_msgs:msg/IMUData.idl
+/home/kha/robot_ws/src/build/ired_msgs/rosidl_adapter/ired_msgs:msg/MotorControl.idl
+/home/kha/robot_ws/src/build/ired_msgs/rosidl_adapter/ired_msgs:msg/MotorData.idl
+/home/kha/robot_ws/src/build/ired_msgs/rosidl_adapter/ired_msgs:msg/MotorSpeed.idl
+/home/kha/robot_ws/src/build/ired_msgs/rosidl_adapter/ired_msgs:srv/PIDTuning.idl

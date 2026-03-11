@@ -1,0 +1,37 @@
+[0.287s] Invoking command in '/home/kha/robot_ws/build/ired_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/kha/robot_ws/src/robot/ired_navigation -DCMAKE_INSTALL_PREFIX=/home/kha/robot_ws/install/ired_navigation
+[0.593s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.593s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.703s] -- Configuring done (0.4s)
+[0.710s] -- Generating done (0.0s)
+[0.713s] -- Build files have been written to: /home/kha/robot_ws/build/ired_navigation
+[0.717s] Invoked command in '/home/kha/robot_ws/build/ired_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/kha/robot_ws/src/robot/ired_navigation -DCMAKE_INSTALL_PREFIX=/home/kha/robot_ws/install/ired_navigation
+[0.719s] Invoking command in '/home/kha/robot_ws/build/ired_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/kha/robot_ws/build/ired_navigation -- -j12 -l12
+[0.781s] Invoked command in '/home/kha/robot_ws/build/ired_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/kha/robot_ws/build/ired_navigation -- -j12 -l12
+[0.799s] Invoking command in '/home/kha/robot_ws/build/ired_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/kha/robot_ws/build/ired_navigation
+[0.812s] -- Install configuration: ""
+[0.812s] -- Execute custom install script
+[0.813s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/config/ired_rplidar_2d.lua
+[0.814s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/launch/navigation.launch.py
+[0.814s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/launch/occupancy_grid.launch.py
+[0.815s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/launch/save_map.launch.py
+[0.815s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/launch/slam.launch.py
+[0.816s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/maps/1
+[0.816s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/maps/map.pgm
+[0.816s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/maps/map.yaml
+[0.816s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/param/navigation.yaml
+[0.817s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ament_index/resource_index/package_run_dependencies/ired_navigation
+[0.817s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ament_index/resource_index/parent_prefix_path/ired_navigation
+[0.818s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/environment/ament_prefix_path.sh
+[0.818s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/environment/ament_prefix_path.dsv
+[0.818s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/environment/path.sh
+[0.818s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/environment/path.dsv
+[0.819s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/local_setup.bash
+[0.819s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/local_setup.sh
+[0.820s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/local_setup.zsh
+[0.820s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/local_setup.dsv
+[0.820s] -- Symlinking: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/package.dsv
+[0.834s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ament_index/resource_index/packages/ired_navigation
+[0.834s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/cmake/ired_navigationConfig.cmake
+[0.835s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/cmake/ired_navigationConfig-version.cmake
+[0.835s] -- Up-to-date symlink: /home/kha/robot_ws/install/ired_navigation/share/ired_navigation/package.xml
+[0.840s] Invoked command in '/home/kha/robot_ws/build/ired_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kha/robot_ws/install/ired_teleop:/home/kha/robot_ws/install/gantry_commander:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/kha/robot_ws/build/ired_navigation
