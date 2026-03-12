@@ -49,17 +49,12 @@ sudo udevadm trigger
 
 ***3.Run the system***
 
-#terminal 1
-```
-ros2 launch gantry_commander launch.py 
-```
-
-#termainal 2
+#termainal 1
 ```
 ros2 launch gantry_moveit_config demo.launch.py
 ```
 
-#termainl 3
+#termainl 2
 ```
 ros2 run gantry_commander serial_bridge
 ```
