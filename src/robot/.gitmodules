@@ -1,0 +1,32 @@
+[submodule "ired_msgs"]
+	path = ired_msgs
+	url = https://gitlab.raikmitl.com/ired/ired_msgs
+	branch = jazzy
+[submodule "ired_rviz"]
+	path = ired_rviz
+	url = https://gitlab.raikmitl.com/ired/ired_rviz
+	branch = jazzy
+[submodule "ired_teleop"]
+	path = ired_teleop
+	url = https://gitlab.raikmitl.com/ired/ired_teleop
+	branch = jazzy
+[submodule "ired_navigation"]
+	path = ired_navigation
+	url = https://gitlab.raikmitl.com/ired/ired_navigation
+	branch = jazzy
+[submodule "rplidar_ros"]
+	path = rplidar_ros
+	url = https://gitlab.raikmitl.com/ired/rplidar_ros
+	branch = jazzy
+[submodule "ired_bringup"]
+	path = ired_bringup
+	url = https://gitlab.raikmitl.com/ired/ired_bringup
+	branch = omni-robot
+[submodule "ros2_laser_scan_matcher"]
+	path = ros2_laser_scan_matcher
+	url = https://gitlab.raikmitl.com/ired/ros2_laser_scan_matcher
+	branch = jazzy
+[submodule "cms"]
+	path = cms
+	url = https://gitlab.raikmitl.com/ired/cms
+	branch = jazzy
