@@ -62,5 +62,10 @@ ros2 run gantry_commander serial_bridge
 in the serial_bridge termainal you need to type "h" to homing then type 'r' to unlock the moveit. Then in the Rviz that will open when you run
 `ros2 launch gantry_moveit_config demo.launch.py` you can move the model to the position you wanted the click plan and execute the robot will move to that position
 
+***Update 24 Mar***
+'''
+ros2 launch gantry_moveit_config demo.launch.py 
+'''
+to open move it and control
 
 ***Any Question Contact Kha IG:kha_smn if urgen call:0617603050 #CALL WHEN EMERGENCY ONLY***
