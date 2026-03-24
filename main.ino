@@ -53,6 +53,26 @@ void loop() {
       Serial.read(); 
       if (isHomed) handleMove(); 
     }
+    // --- NEW JOGGING LOGIC ---
+    else if (cmd == 'J') {
+      Serial.read(); 
+      delay(2);      
+      char axis = Serial.read();
+      
+      if (axis == 'S') {
+        stepperX.stop(); 
+        stepperY.stop();
+      } 
+      else if (isHomed) {
+        char dir = Serial.read();
+        long jogDist = 1000000;
+        
+        if (axis == 'X' && dir == '+') stepperX.move(jogDist);
+        else if (axis == 'X' && dir == '-') stepperX.move(-jogDist);
+        else if (axis == 'Y' && dir == '+') stepperY.move(jogDist);
+        else if (axis == 'Y' && dir == '-') stepperY.move(-jogDist);
+      }
+    }
     else { Serial.read(); }
   }
 
@@ -90,7 +110,6 @@ void runFullHoming() {
   isHomed = false;
   Serial.println("STATUS: Homing Started...");
   
-  // Pass the correct stepsPerMeter for each axis
   homeAxis(stepperZ, Z_LIMIT_PIN, 1, stepsPerMeterZ);  
   homeAxis(stepperX, X_LIMIT_PIN, 1, stepsPerMeterXY);   
   homeAxis(stepperY, Y_LIMIT_PIN, 1, stepsPerMeterXY);
@@ -137,7 +156,7 @@ void runStepTest() {
   isHomed = false; 
   
   digitalWrite(ENABLE_PIN, LOW); 
-  Serial.println("STATUS: Running Multi-Axis Step Test...");
+  Serial.println("STATUS: Running Multi-Axis Step Test");
   
   long targetX = stepperX.currentPosition() + 1000;
   long targetY = stepperY.currentPosition() + 1000;
