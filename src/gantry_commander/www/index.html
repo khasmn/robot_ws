@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gantry Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.1/nipplejs.min.js"></script>
+    
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            background: #1e1e1e; 
+            color: white; 
+            margin: 0;
+            padding: 20px;
+        }
+        /* Header styling */
+        .header { margin-bottom: 20px; }
+        
+        /* Flexbox Container for the split screen */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        /* Left Column: Controls */
+        .controls-panel {
+            flex: 1; 
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Right Column: Logs */
+        .log-panel {
+            flex: 1;
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Button Styling */
+        .btn { 
+            padding: 15px 30px; 
+            font-size: 18px; 
+            font-weight: bold;
+            margin: 10px; 
+            cursor: pointer; 
+            border-radius: 8px; 
+            border: none; 
+            width: 80%; 
+            transition: opacity 0.2s;
+        }
+        .btn:hover { opacity: 0.8; }
+        .open { background: #4CAF50; color: white; }
+        .close { background: #f44336; color: white; }
+        .home { background: #2196F3; color: white; }
+        .moveit { background: #9c27b0; color: white; }
+        .estop { background: #ff0000; color: white; border: 2px solid white; }
+
+        /* Log Box Styling */
+        #logBox {
+            flex-grow: 1;
+            background: #000;
+            color: #0f0; 
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            overflow-y: auto;
+            text-align: left;
+            padding: 15px;
+            border: 2px solid #444;
+            border-radius: 8px;
+            height: 550px; 
+        }
+
+        #joystick-zone {
+            width: 180px;
+            height: 180px;
+            position: relative;
+            background: #111;
+            border-radius: 50%;
+            border: 4px solid #444;
+            margin-top: 20px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Gantry Control Dashboard</h1>
+        <p>
+            Status: <span id="status" style="color: red; font-weight: bold;">Disconnected</span> | 
+            Gantry State: <span id="gantry_state" style="color: yellow; font-weight: bold;">WAITING</span>
+        </p>
+    </div>
+
+    <div class="container">
+        
+        <div class="controls-panel">
+            <h2>Command Center</h2>
+            <button class="btn home" onclick="sendCommand('HOME')">HOME GANTRY</button>
+            <div style="display: flex; width: 85%; justify-content: space-between;">
+                <button class="btn open" style="width: 45%;" onclick="sendCommand('OPEN')">OPEN</button>
+                <button class="btn close" style="width: 45%;" onclick="sendCommand('CLOSE')">CLOSE</button>
+            </div>
+            <button class="btn moveit" onclick="sendCommand('STREAM_ON')">START MOVEIT</button>
+            <button class="btn estop" onclick="sendCommand('S')">EMERGENCY STOP</button>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 5px; color: #ccc;">Manual Jogging</h3>
+            <div id="joystick-zone"></div>
+        </div>
+
+        <div class="log-panel">
+            <h2 style="margin-top: 0;">Live System Logs</h2>
+            <div id="logBox">Waiting for system logs...<br></div>
+        </div>
+
+    </div>
+
+    <script>
+        var ros = new ROSLIB.Ros({ url : 'ws://' + window.location.hostname + ':9090' });
+
+        ros.on('connection', function() {
+            document.getElementById('status').innerHTML = 'Connected';
+            document.getElementById('status').style.color = '#4CAF50';
+        });
+
+        ros.on('close', function() {
+            document.getElementById('status').innerHTML = 'Disconnected';
+            document.getElementById('status').style.color = 'red';
+        });
+
+        var cmdTopic = new ROSLIB.Topic({
+            ros : ros,
+            name : '/web_ui_cmd',
+            messageType : 'std_msgs/String'
+        });
+
+        var statusListener = new ROSLIB.Topic({
+            ros : ros,
+            name : '/gantry_status',
+            messageType : 'std_msgs/String'
+        });
+
+        statusListener.subscribe(function(message) {
+            var stateSpan = document.getElementById('gantry_state');
+            stateSpan.innerHTML = message.data;
+            if (message.data === 'HOMED') {
+                stateSpan.style.color = '#4CAF50';
+            } else if (message.data === 'HOMING...') {
+                stateSpan.style.color = '#FF9800';
+            }
+        });
+
+        var logListener = new ROSLIB.Topic({
+            ros : ros,
+            name : '/web_log',
+            messageType : 'std_msgs/String'
+        });
+
+        logListener.subscribe(function(message) {
+            var logBox = document.getElementById('logBox');
+            logBox.innerHTML += message.data + "<br>";
+            logBox.scrollTop = logBox.scrollHeight; 
+        });
+
+        function sendCommand(val) {
+            var msg = new ROSLIB.Message({ data: val });
+            cmdTopic.publish(msg);
+            
+            var logBox = document.getElementById('logBox');
+            var logColor = val.startsWith("JOG") ? "#FF9800" : "#00bcd4";
+            logBox.innerHTML += "<span style='color: " + logColor + ";'>[WEB UI]: Sent command " + val + "</span><br>";
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        // ==========================================
+        // VIRTUAL JOYSTICK SETUP
+        // ==========================================
+        var joystickZone = document.getElementById('joystick-zone');
+        var manager = nipplejs.create({
+            zone: joystickZone,
+            mode: 'static',
+            position: { left: '50%', top: '50%' },
+            color: '#2196F3',
+            size: 100
+        });
+
+        // Listen for directional movements and send ROS commands
+        manager.on('dir:up', function () { sendCommand('JOG_Y+'); });
+        manager.on('dir:down', function () { sendCommand('JOG_Y-'); });
+        manager.on('dir:left', function () { sendCommand('JOG_X-'); });
+        manager.on('dir:right', function () { sendCommand('JOG_X+'); });
+        
+        manager.on('end', function () { sendCommand('JOG_STOP'); });
+
+    </script>
+</body>
+</html>
