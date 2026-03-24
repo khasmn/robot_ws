@@ -18,7 +18,7 @@ colcon build --symlink-install
 source install/setup.bash
 ```
 
-***2.Defaulting the port for Arduino so no hard code***
+***2.Hardware Configuration***
 ```
 lsusb
 ```
@@ -43,11 +43,13 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
-***3.Run the system***
+***3.Launching the System***
 
 You can run the system using the automated script or by manually launching each component in separate terminals.
 
 Option A: Automated Script
+This script starts the ROS Bridge, the iRED Mobile Base hardware, the Gantry Serial Bridge, and the Web Server automatically.
+
 Open a terminal and run the background services:
 ```
 cd ~/robot_ws
@@ -83,16 +85,35 @@ ros2 launch gantry_moveit_config demo.launch.py
 ```
 ***4.Web Dashboard Control***
 
-Once the system is running, the terminal UI is no longer used. All controls are handled via the web browser.
+Access the UI at http://localhost:8080 (or http://<YOUR_IP>:8080 on otherdevice).
 
-1. Open a web browser on the host machine and go to: http://localhost:8080
+1. Gantry Control
 
-2. To control the gantry from a smartphone or another computer on the same Wi-Fi network, find the host machine's IP address by running hostname -I in the terminal. Navigate to http://<YOUR_IP_ADDRESS>:8080 on the remote device.
+Initialize: Click HOME first to calibrate the stepper motors.
 
-3. Click "HOME GANTRY" first.
+Jogging: Use the Arrow D-Pad for precise X/Y movements.
 
-4. To use MoveIt, click "START MOVEIT" to unlock the trajectory stream.
+MoveIt: Click STREAM to allow MoveIt trajectories to pass to the hardware.
 
-5. To manually move the gantry, use the Virtual Joystick on the screen (Ensure MoveIt streaming is off before jogging).
 
-***Any Question Contact Kha IG:kha_smn if urgen call:0617603050 #CALL WHEN EMERGENCY ONLY***
+2. Omni Mobile Base (Cruise Control)
+
+Incremental Speed: Click the direction arrows (↑, ↓, ←, →) to increase speed by 0.05m/s per click.
+
+Rotation: Use the ↺ / ↻ buttons to increase angular velocity by 0.1 rad/s.
+
+Brake: Click the Red STOP button to instantly reset all velocities to 0.00.
+
+3. PID Tuning Deck
+
+Select the target motor (FL, FR, BL, BR) from the dropdown.
+
+Enter your Kp, Ki, Kd values.
+
+Click Apply Parameters. Check the System Telemetry log for a "SUCCESS" confirmation.
+
+***Developer: Kha
+
+Instagram: @kha_smn
+
+Emergency Call: 061-760-3050 (ONLY FOR HARDWARE EMERGENCIES)***

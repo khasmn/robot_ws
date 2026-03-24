@@ -2,245 +2,244 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Gantry Dashboard</title>
+    <title>JEFFY | Terminal</title>
     <script src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.1/nipplejs.min.js"></script>
-    
     <style>
-        /* Reset and Typography */
+        :root {
+            --bg-deep: #0a0a0b;
+            --card-bg: #141416;
+            --accent-lime: #d4ff3f;
+            --text-main: #ffffff;
+            --text-dim: #71717a;
+            --log-green: #00ff41;
+            --danger: #ef4444;
+            --border: #27272a;
+            --input-bg: #1c1c1f;
+        }
+
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0d0d0d; 
-            color: #d1d1d1; 
-            margin: 0;
-            padding: 40px 20px;
-            font-weight: 300;
-        }
-        h1, h2, h3 { 
-            font-weight: 400; 
-            letter-spacing: 1px; 
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-        
-        .header { 
-            text-align: center; 
-            margin-bottom: 40px; 
-        }
-        .header p {
-            font-size: 14px;
-            letter-spacing: 0.5px;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-deep); color: var(--text-main); 
+            margin: 0; padding: 20px; height: 100vh; display: flex; flex-direction: column;
+            box-sizing: border-box; overflow: hidden;
         }
 
-        /* Flexbox Layout */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            max-width: 900px;
-            margin: 0 auto;
-            gap: 30px;
-        }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-shrink: 0; }
+        .logo { font-size: 20px; font-weight: 800; }
+        .logo span { color: var(--accent-lime); }
 
-        /* Clean Panels */
-        .panel {
-            flex: 1; 
-            background: #141414;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid #262626;
-            display: flex;
-            flex-direction: column;
-        }
+        .main-layout { display: flex; flex: 1; gap: 15px; overflow: hidden; }
+        .controls-col { flex: 0 0 320px; display: flex; flex-direction: column; gap: 15px; overflow-y: auto; padding-right: 5px; }
+        .logs-col { flex: 1; display: flex; flex-direction: column; }
 
-        /* Outline Buttons */
+        /* Custom Scrollbar for Sidebar */
+        .controls-col::-webkit-scrollbar { width: 4px; }
+        .controls-col::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+        .card { background: var(--card-bg); border-radius: 20px; padding: 18px; border: 1px solid var(--border); }
+        .card h2 { font-size: 11px; font-weight: 700; margin: 0 0 15px 0; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;}
+
+        /* PID Inputs */
+        .pid-group { display: flex; flex-direction: column; gap: 10px; }
+        .pid-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+        .pid-row label { font-size: 11px; font-weight: 600; color: var(--text-dim); width: 30px; }
+        .pid-row input, .pid-row select { 
+            background: var(--input-bg); border: 1px solid var(--border); color: #fff; 
+            padding: 8px; border-radius: 8px; font-size: 12px; flex: 1; outline: none;
+        }
+        .pid-row input:focus { border-color: var(--accent-lime); }
+
+        /* Button Styling */
+        .control-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
         .btn { 
-            background: transparent;
-            color: #d1d1d1;
-            padding: 12px 20px; 
-            font-size: 13px; 
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 12px; 
-            cursor: pointer; 
-            border-radius: 4px; 
-            border: 1px solid #333; 
-            width: 100%; 
-            transition: all 0.2s ease;
+            background: #1c1c1f; color: var(--text-main); border: 1px solid var(--border); padding: 12px;
+            font-size: 14px; font-weight: 600; border-radius: 12px; cursor: pointer; transition: all 0.1s ease;
         }
-        .btn:hover { background: #1f1f1f; border-color: #555; }
-        
-        .btn.home { border-color: #1565c0; color: #64b5f6; }
-        .btn.open { border-color: #2e7d32; color: #81c784; }
-        .btn.close { border-color: #c62828; color: #e57373; }
-        .btn.moveit { border-color: #6a1b9a; color: #ba68c8; }
-        
-        /* E-Stop*/
-        .btn.estop { 
-            background: #c62828; 
-            color: white; 
-            border-color: #c62828; 
-            font-weight: 600; 
-            margin-top: auto;
-        }
-        .btn.estop:hover { background: #b71c1c; }
+        .btn:active { background: var(--accent-lime); color: #000; transform: scale(0.95); }
+        .btn-prime { background: var(--accent-lime); color: #000; border: none; font-size: 11px; font-weight: 700; }
+        .btn-danger { background: #2a1a1a; color: var(--danger); border: 1px solid #452727; font-weight: 800; grid-column: span 3; margin-top: 5px; }
 
-        .btn-row {
-            display: flex;
-            gap: 12px;
-            width: 100%;
-        }
+        /* Terminal Window */
+        #logContainer { flex: 1; background: #09090b; border-radius: 20px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+        .log-header { background: #141416; padding: 10px 20px; font-size: 10px; color: var(--text-dim); border-bottom: 1px solid var(--border); }
+        #logBox { flex: 1; padding: 15px; color: var(--log-green); font-family: 'JetBrains Mono', monospace; font-size: 12px; overflow-y: auto; line-height: 1.5; }
 
-        /* Log Box */
-        #logBox {
-            flex-grow: 1;
-            background: #0a0a0a;
-            color: #0f0;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 12px;
-            overflow-y: auto;
-            text-align: left;
-            padding: 15px;
-            border: 1px solid #262626;
-            border-radius: 4px;
-            height: 400px;
-            line-height: 1.6;
-        }
-
-        /* Joystick Container */
-        .joystick-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-        #joystick-zone {
-            width: 140px;
-            height: 140px;
-            position: relative;
-            background: #0a0a0a;
-            border-radius: 50%;
-            border: 1px solid #333;
-        }
+        .speed-readout { background: #0e0e10; padding: 12px; border-radius: 12px; margin-top: 10px; display: flex; justify-content: space-between; font-family: monospace; font-size: 11px; color: var(--accent-lime); }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Gantry Terminal</h1>
-        <p>
-            STATUS: <span id="status" style="color: #e57373;">DISCONNECTED</span> &nbsp;|&nbsp; 
-            STATE: <span id="gantry_state" style="color: #ffd54f;">WAITING</span>
-        </p>
+    <div class="top-nav">
+        <div class="logo">KHA <span>PRIME</span></div>
+        <div id="status" style="font-size: 11px; color: var(--danger);">● SYSTEM OFFLINE</div>
     </div>
 
-    <div class="container">
-        
-        <div class="panel">
-            <h2 style="font-size: 16px; margin-top: 0;">Commands</h2>
-            
-            <button class="btn home" onclick="sendCommand('HOME')">Home Gantry</button>
-            
-            <div class="btn-row">
-                <button class="btn open" onclick="sendCommand('OPEN')">Open</button>
-                <button class="btn close" onclick="sendCommand('CLOSE')">Close</button>
-            </div>
-            
-            <button class="btn moveit" onclick="sendCommand('STREAM_ON')">Enable MoveIt</button>
-            
-            <div class="joystick-wrapper">
-                <h3 style="font-size: 12px; color: #666; text-transform: uppercase;">Manual Jog</h3>
-                <div id="joystick-zone"></div>
+    <div class="main-layout">
+        <div class="controls-col">
+            <div class="card">
+                <h2>Gantry Precision Jog</h2>
+                <div class="control-grid">
+                    <div style="visibility:hidden"></div>
+                    <button class="btn" onclick="sendGantryCommand('JOG_Y+')">↑</button>
+                    <div style="visibility:hidden"></div>
+                    
+                    <button class="btn" onclick="sendGantryCommand('JOG_X-')">←</button>
+                    <button class="btn btn-prime" onclick="sendGantryCommand('HOME')">HOME</button>
+                    <button class="btn" onclick="sendGantryCommand('JOG_X+')">→</button>
+                    
+                    <div style="visibility:hidden"></div>
+                    <button class="btn" onclick="sendGantryCommand('JOG_Y-')">↓</button>
+                    <div style="visibility:hidden"></div>
+                </div>
             </div>
 
-            <button class="btn estop" onclick="sendCommand('S')">EMERGENCY STOP</button>
+            <div class="card">
+                <h2>PID Tuning Deck</h2>
+                <div class="pid-group">
+                    <div class="pid-row">
+                        <label>MTR</label>
+                        <select id="pid_motor">
+                            <option value="FL">Front Left (FL)</option>
+                            <option value="FR">Front Right (FR)</option>
+                            <option value="BL">Back Left (BL)</option>
+                            <option value="BR">Back Right (BR)</option>
+                        </select>
+                    </div>
+                    <div class="pid-row">
+                        <label>Kp</label>
+                        <input type="number" id="pid_kp" value="5.0" step="0.1">
+                    </div>
+                    <div class="pid-row">
+                        <label>Ki</label>
+                        <input type="number" id="pid_ki" value="0.0" step="0.1">
+                    </div>
+                    <div class="pid-row">
+                        <label>Kd</label>
+                        <input type="number" id="pid_kd" value="0.0" step="0.1">
+                    </div>
+                    <button class="btn btn-prime" style="margin-top: 10px;" onclick="callPidService()">Apply Parameters</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Omni Speed Control</h2>
+                <div class="control-grid">
+                    <button class="btn" onclick="adjustSpeed('z', 0.10)">↺</button>
+                    <button class="btn" onclick="adjustSpeed('x', 0.05)">↑</button>
+                    <button class="btn" onclick="adjustSpeed('z', -0.10)">↻</button>
+                    
+                    <button class="btn" onclick="adjustSpeed('y', 0.05)">←</button>
+                    <button class="btn" style="background:#331a1a; color:var(--danger);" onclick="fullStop()">■</button>
+                    <button class="btn" onclick="adjustSpeed('y', -0.05)">→</button>
+                    
+                    <div style="visibility:hidden"></div>
+                    <button class="btn" onclick="adjustSpeed('x', -0.05)">↓</button>
+                    <div style="visibility:hidden"></div>
+                </div>
+                <button class="btn btn-danger" onclick="fullStop()">EMERGENCY BRAKE</button>
+                <div class="speed-readout">
+                    <div>X: <span id="ui_x">0.00</span></div>
+                    <div>Y: <span id="ui_y">0.00</span></div>
+                    <div>Z: <span id="ui_z">0.00</span></div>
+                </div>
+            </div>
         </div>
 
-        <div class="panel">
-            <h2 style="font-size: 16px; margin-top: 0;">System Logs</h2>
-            <div id="logBox">Awaiting connection...<br></div>
+        <div class="logs-col">
+            <div id="logContainer">
+                <div class="log-header">LIVE TELEMETRY STREAM</div>
+                <div id="logBox">> Systems initialized...<br></div>
+            </div>
         </div>
-
     </div>
 
     <script>
         var ros = new ROSLIB.Ros({ url : 'ws://' + window.location.hostname + ':9090' });
 
-        ros.on('connection', function() {
-            document.getElementById('status').innerHTML = 'CONNECTED';
-            document.getElementById('status').style.color = '#81c784';
-        });
+        ros.on('connection', () => { document.getElementById('status').innerText = '● SYSTEM ONLINE'; document.getElementById('status').style.color = 'var(--accent-lime)'; });
+        ros.on('close', () => { document.getElementById('status').innerText = '● SYSTEM OFFLINE'; document.getElementById('status').style.color = 'var(--danger)'; });
 
-        ros.on('close', function() {
-            document.getElementById('status').innerHTML = 'DISCONNECTED';
-            document.getElementById('status').style.color = '#e57373';
-        });
-
-        var cmdTopic = new ROSLIB.Topic({
+        // --- TOPICS & SERVICES ---
+        var cmdTopic = new ROSLIB.Topic({ ros : ros, name : '/web_ui_cmd', messageType : 'std_msgs/String' });
+        var cmdVelTopic = new ROSLIB.Topic({ ros : ros, name : '/cmd_vel', messageType : 'geometry_msgs/TwistStamped' });
+        
+        var pidServiceClient = new ROSLIB.Service({
             ros : ros,
-            name : '/web_ui_cmd',
-            messageType : 'std_msgs/String'
+            name : '/ired/pid/tuning',
+            serviceType : 'ired_msgs/srv/PIDTuning'
         });
 
-        var statusListener = new ROSLIB.Topic({
-            ros : ros,
-            name : '/gantry_status',
-            messageType : 'std_msgs/String'
-        });
+        // --- PID SERVICE CALL ---
+        function callPidService() {
+            var motor = document.getElementById('pid_motor').value;
+            var kp = parseFloat(document.getElementById('pid_kp').value);
+            var ki = parseFloat(document.getElementById('pid_ki').value);
+            var kd = parseFloat(document.getElementById('pid_kd').value);
 
-        statusListener.subscribe(function(message) {
-            var stateSpan = document.getElementById('gantry_state');
-            stateSpan.innerHTML = message.data;
-            if (message.data === 'HOMED') {
-                stateSpan.style.color = '#81c784';
-            } else if (message.data === 'HOMING...') {
-                stateSpan.style.color = '#ffd54f';
-            } else {
-                stateSpan.style.color = '#d1d1d1';
-            }
-        });
+            logMsg(`Calling PID Service for ${motor}...`);
 
-        var logListener = new ROSLIB.Topic({
-            ros : ros,
-            name : '/web_log',
-            messageType : 'std_msgs/String'
-        });
+            var request = new ROSLIB.ServiceRequest({
+                motor: motor,
+                kp: kp,
+                ki: ki,
+                kd: kd
+            });
 
-        logListener.subscribe(function(message) {
-            var logBox = document.getElementById('logBox');
-            logBox.innerHTML += message.data + "<br>";
-            logBox.scrollTop = logBox.scrollHeight; 
-        });
-
-        function sendCommand(val) {
-            var msg = new ROSLIB.Message({ data: val });
-            cmdTopic.publish(msg);
-            
-            var logBox = document.getElementById('logBox');
-            var logColor = val.startsWith("JOG") ? "#FF9800" : "#00bcd4";
-            logBox.innerHTML += "<span style='color: " + logColor + ";'>&gt; CMD: " + val + "</span><br>";
-            logBox.scrollTop = logBox.scrollHeight;
+            pidServiceClient.callService(request, function(result) {
+                if (result.status) {
+                    logMsg(`<span style="color:var(--accent-lime)">[SUCCESS] PID updated for ${motor}</span>`);
+                } else {
+                    logMsg(`<span style="color:var(--danger)">[FAILED] Service rejected tuning for ${motor}</span>`);
+                }
+            }, function(error) {
+                logMsg(`<span style="color:var(--danger)">[ERROR] Service call failed: ${error}</span>`);
+            });
         }
 
-        // ==========================================
-        // VIRTUAL JOYSTICK SETUP
-        // ==========================================
-        var joystickZone = document.getElementById('joystick-zone');
-        var manager = nipplejs.create({
-            zone: joystickZone,
-            mode: 'static',
-            position: { left: '50%', top: '50%' },
-            color: '#666666', 
-            size: 100
-        });
+        // --- CORE LOGIC ---
+        var targetVel = { x: 0.0, y: 0.0, z: 0.0 };
+        const LIMITS = { x: 0.35, y: 0.35, z: 0.60 };
 
-        manager.on('dir:up', function () { sendCommand('JOG_Y+'); });
-        manager.on('dir:down', function () { sendCommand('JOG_Y-'); });
-        manager.on('dir:left', function () { sendCommand('JOG_X-'); });
-        manager.on('dir:right', function () { sendCommand('JOG_X+'); });
-        manager.on('end', function () { sendCommand('JOG_STOP'); });
+        function sendGantryCommand(val) {
+            cmdTopic.publish(new ROSLIB.Message({ data: val }));
+            logMsg("Gantry Jog: " + val);
+        }
 
+        function adjustSpeed(axis, amount) {
+            targetVel[axis] += amount;
+            if (Math.abs(targetVel[axis]) > LIMITS[axis]) targetVel[axis] = targetVel[axis] > 0 ? LIMITS[axis] : -LIMITS[axis];
+            updateUI();
+        }
+
+        function fullStop() {
+            targetVel = { x: 0.0, y: 0.0, z: 0.0 };
+            updateUI();
+            sendGantryCommand('S');
+            publishVel();
+            logMsg("HALT EXECUTED");
+        }
+
+        function updateUI() {
+            document.getElementById('ui_x').innerText = targetVel.x.toFixed(2);
+            document.getElementById('ui_y').innerText = targetVel.y.toFixed(2);
+            document.getElementById('ui_z').innerText = targetVel.z.toFixed(2);
+        }
+
+        function logMsg(msg) {
+            var lb = document.getElementById('logBox');
+            lb.innerHTML += `<span>[${new Date().toLocaleTimeString()}]</span> ${msg}<br>`;
+            lb.scrollTop = lb.scrollHeight;
+        }
+
+        function publishVel() {
+            var msg = new ROSLIB.Message({
+                header: { stamp: {sec: 0, nanosec: 0}, frame_id: 'base_link' },
+                twist: { linear: { x: targetVel.x, y: targetVel.y, z: 0.0 }, angular: { x: 0.0, y: 0.0, z: targetVel.z } }
+            });
+            cmdVelTopic.publish(msg);
+        }
+
+        setInterval(publishVel, 100);
     </script>
 </body>
 </html>
