@@ -88,19 +88,17 @@ class SerialBridge(Node):
         except Exception as e:
             self.get_logger().error(f"Gantry Serial Error: {e}")
 
-        # Connect Gripper (If you have one plugged in)
         try:
-            # We pass self.web_log so the gripper can print to the website!
             self.gripper = Gripper(port="/dev/ttyACM0", logger_callback=self.web_log)
             self.web_log("[SYSTEM] Gripper Connected.")
         except Exception as e:
             self.get_logger().warning("Gripper not found or failed to connect.")
         
     def web_log(self, text):
-        print(text) # Print to terminal
+        print(text)
         msg = String()
         msg.data = str(text)
-        self.log_pub.publish(msg) # Publish to website
+        self.log_pub.publish(msg)
 
     def read_serial(self):
         while rclpy.ok():
