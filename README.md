@@ -85,14 +85,14 @@ ros2 launch gantry_moveit_config demo.launch.py
 
 Once the system is running, the terminal UI is no longer used. All controls are handled via the web browser.
 
-    1.Open a web browser on the host machine and go to: http://localhost:8080
+1. Open a web browser on the host machine and go to: http://localhost:8080
 
-    2.To control the gantry from a smartphone or another computer on the same Wi-Fi network, find the host machine's IP address by running hostname -I in the terminal. Navigate to http://<YOUR_IP_ADDRESS>:8080 on the remote device.
+2. To control the gantry from a smartphone or another computer on the same Wi-Fi network, find the host machine's IP address by running hostname -I in the terminal. Navigate to http://<YOUR_IP_ADDRESS>:8080 on the remote device.
 
-    3.Click "HOME GANTRY" first.
+3. Click "HOME GANTRY" first.
 
-    4.To use MoveIt, click "START MOVEIT" to unlock the trajectory stream.
+4. To use MoveIt, click "START MOVEIT" to unlock the trajectory stream.
 
-    5.To manually move the gantry, use the Virtual Joystick on the screen (Ensure MoveIt streaming is off before jogging).
+5. To manually move the gantry, use the Virtual Joystick on the screen (Ensure MoveIt streaming is off before jogging).
 
 ***Any Question Contact Kha IG:kha_smn if urgen call:0617603050 #CALL WHEN EMERGENCY ONLY***
