@@ -72,15 +72,38 @@
     <limit lower="0" upper="0.15" effort="100" velocity="1.0"/>
   </joint>
 
+  <link name="gripper_forward_link">
+    <visual>
+      <origin xyz="0 -0.10 0" rpy="0 0 0"/> 
+      <geometry><box size="0.02 0.20 0.02"/></geometry>
+      <material name="grey"/>
+    </visual>
+  </link>
+
+  <joint name="gripper_body_to_forward" type="fixed">
+    <parent link="gripper_body"/>
+    <child link="gripper_forward_link"/>
+    <origin xyz="0 -0.02 0" rpy="0 0 0"/> 
+  </joint>
+
+  <link name="actual_gripper">
+    <visual>
+      <origin xyz="0 -0.06 0" rpy="0 0 0"/>
+      <geometry><box size="0.06 0.12 0.04"/></geometry>
+      <material name="yellow"/>
+    </visual>
+  </link>
+
+  <joint name="forward_to_gripper" type="fixed">
+    <parent link="gripper_forward_link"/>
+    <child link="actual_gripper"/>
+    <origin xyz="0 -0.20 0" rpy="0 0 0"/> 
+  </joint>
   <link name="camera_tower_main">
     <visual>
       <geometry><box size="0.04 0.04 0.5"/></geometry>
       <origin xyz="0 0 0.25"/> <material name="grey"/>
     </visual>
-    <collision>
-      <geometry><box size="0.04 0.04 0.5"/></geometry>
-      <origin xyz="0 0 0.25"/>
-    </collision>
   </link>
 
   <joint name="base_to_tower" type="fixed">
@@ -94,10 +117,6 @@
       <geometry><box size="0.03 0.03 0.405"/></geometry>
       <origin xyz="0 0 0.2025"/> <material name="grey"/>
     </visual>
-    <collision>
-      <geometry><box size="0.03 0.03 0.405"/></geometry>
-      <origin xyz="0 0 0.2025"/>
-    </collision>
   </link>
 
   <joint name="tower_to_extension" type="fixed">
@@ -111,9 +130,6 @@
       <geometry><box size="0.06 0.04 0.02"/></geometry>
       <material name="red"/>
     </visual>
-    <collision>
-      <geometry><box size="0.06 0.04 0.02"/></geometry>
-    </collision>
   </link>
 
   <joint name="extension_to_camera" type="fixed">
@@ -123,28 +139,17 @@
   </joint>
 
   <ros2_control name="GantrySystem" type="system">
-    <hardware>
-      <plugin>mock_components/GenericSystem</plugin>
-    </hardware>
+    <hardware><plugin>mock_components/GenericSystem</plugin></hardware>
     <joint name="x_axis_joint">
-      <command_interface name="position">
-        <param name="min">0</param>
-        <param name="max">0.33</param>
-      </command_interface>
+      <command_interface name="position"><param name="min">0</param><param name="max">0.33</param></command_interface>
       <state_interface name="position"/>
     </joint>
     <joint name="y_axis_joint">
-      <command_interface name="position">
-        <param name="min">0</param>
-        <param name="max">0.36</param>
-      </command_interface>
+      <command_interface name="position"><param name="min">0</param><param name="max">0.36</param></command_interface>
       <state_interface name="position"/>
     </joint>
     <joint name="z_axis_lift_joint">
-      <command_interface name="position">
-        <param name="min">0</param>
-        <param name="max">0.15</param>
-      </command_interface>
+      <command_interface name="position"><param name="min">0</param><param name="max">0.15</param></command_interface>
       <state_interface name="position"/>
     </joint>
   </ros2_control>

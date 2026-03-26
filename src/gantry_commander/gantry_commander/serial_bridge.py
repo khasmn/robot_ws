@@ -81,7 +81,7 @@ class SerialBridge(Node):
 
         # Connect Gantry
         try:
-            self.ser = serial.Serial('/dev/arduino_gantry', 115200, timeout=0.1)
+            self.ser = serial.Serial('/dev/ttyACM1', 115200, timeout=0.1)
             self.get_logger().info("Gantry Serial connection established.")
             time.sleep(2.0)
             threading.Thread(target=self.read_serial, daemon=True).start()

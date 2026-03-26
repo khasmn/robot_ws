@@ -17,6 +17,6 @@ def generate_launch_description():
         Node(package='controller_manager', executable='ros2_control_node',
              parameters=[{'robot_description': robot_desc}, config_path]),
         Node(package='controller_manager', executable='spawner', arguments=['joint_state_broadcaster']),
-        Node(package='controller_manager', executable='spawner', arguments=['arm_controller']),
+        Node(package='controller_manager', executable='spawner', arguments=['gantry_arm_controller']),
         Node(package='tf2_ros', executable='static_transform_publisher', arguments=['0','0','0','0','0','0','world','base_link'])
     ])
