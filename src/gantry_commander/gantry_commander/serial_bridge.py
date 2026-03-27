@@ -5,7 +5,6 @@ import serial
 import time
 import threading
 import struct 
-from std_msgs.msg import String, Bool
 
 # ========================
 # GRIPPER PROTOCOL CLASS
@@ -20,13 +19,14 @@ def _build_packet(cmd: int, data: bytes) -> bytes:
 
 class Gripper:
     CMD_ENABLE = _build_packet(0x08, bytes([0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))
+    
     CMD_OPEN = _build_packet(0x0C, bytes([0x01, 0x13, 0x88, 0x00, 0x00, 0x00, 0x00, 0x00]))
     CMD_CLOSE = _build_packet(0x0C, bytes([0x02, 0x13, 0x88, 0x00, 0x00, 0x00, 0x00, 0x00]))
+    
     CMD_STOP = _build_packet(0x0C, bytes([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))
 
-    def __init__(self, port: str = "/dev/ttyACM0", baudrate: int = 115200, logger_callback=None):
+    def __init__(self, port: str = "/dev/ttyACM0", baudrate: int = 115200):
         self.ser = serial.Serial(port, baudrate, timeout=1)
-        self.log = logger_callback if logger_callback else print
         time.sleep(0.1)
         self._send(self.CMD_ENABLE)
 
@@ -41,17 +41,17 @@ class Gripper:
 
     def open(self, duration=1.5):
         self._send(self.CMD_OPEN)
-        self.log(f"[Gripper] Opening for {duration} seconds...")
+        print(f"[Gripper] Opening for {duration} seconds...")
         threading.Timer(duration, self.stop).start()
 
     def close(self, duration=1.5):
         self._send(self.CMD_CLOSE)
-        self.log(f"[Gripper] Closing for {duration} seconds...")
+        print(f"[Gripper] Closing for {duration} seconds...")
         threading.Timer(duration, self.stop).start()
 
     def stop(self):
         self._send(self.CMD_STOP)
-        self.log("[Gripper] Motor Halted.")
+        print("[Gripper] Motor Halted.")
 
     def disconnect(self):
         self.ser.close()
@@ -64,14 +64,24 @@ class SerialBridge(Node):
         super().__init__('serial_bridge')
         self.is_ready = False
         self.streaming_unlocked = False
+        
         self.gripper_state = 0
         self.gripper = None
-        self.ser = None
+        try:
+            self.gripper = Gripper('/dev/ttyACM0', 115200)
+            self.gripper.set_speed(800)
+            self.get_logger().info("Gripper connected.")
+        except Exception as e:
+            self.get_logger().error(f"Gripper Error: {e}")
 
-        # ROS Publishers & Subscribers for Web UI
-        self.ui_sub = self.create_subscription(String, '/web_ui_cmd', self.web_ui_callback, 10)
-        self.status_pub = self.create_publisher(String, '/gantry_status', 10)
-        self.log_pub = self.create_publisher(String, '/web_log', 10)
+        try:
+            self.ser = serial.Serial('/dev/ttyACM1', 115200, timeout=0.1)
+            self.get_logger().info("Serial connection established.")
+            time.sleep(2.0)
+            threading.Thread(target=self.read_serial, daemon=True).start()
+            threading.Thread(target=self.user_interface, daemon=True).start()
+        except Exception as e:
+            self.get_logger().error(f"Serial Error: {e}")
 
         self.subscription = self.create_subscription(
             JointState, 
@@ -79,38 +89,55 @@ class SerialBridge(Node):
             self.listener_callback, 
             10)
 
-        # Connect Gantry
-        try:
-            self.ser = serial.Serial('/dev/ttyACM1', 115200, timeout=0.1)
-            self.get_logger().info("Gantry Serial connection established.")
-            time.sleep(2.0)
-            threading.Thread(target=self.read_serial, daemon=True).start()
-        except Exception as e:
-            self.get_logger().error(f"Gantry Serial Error: {e}")
-
-        try:
-            self.gripper = Gripper(port="/dev/ttyACM0", logger_callback=self.web_log)
-            self.web_log("[SYSTEM] Gripper Connected.")
-        except Exception as e:
-            self.get_logger().warning("Gripper not found or failed to connect.")
-        
-    def web_log(self, text):
-        print(text)
-        msg = String()
-        msg.data = str(text)
-        self.log_pub.publish(msg)
-
     def read_serial(self):
         while rclpy.ok():
-            if self.ser and self.ser.in_waiting > 0:
+            if self.ser.in_waiting > 0:
                 line = self.ser.readline().decode('utf-8', errors='ignore').strip()
                 if line:
-                    self.web_log(f"[ARDUINO]: {line}")
+                    print(f"\n[ARDUINO]: {line}")
                     if "HOMING_COMPLETE" in line:
                         self.is_ready = True
-                        msg = String()
-                        msg.data = "HOMED"
-                        self.status_pub.publish(msg)
+
+    def user_interface(self):
+        while rclpy.ok():
+            print("\n--- MOVEIT GANTRY BRIDGE ---")
+            print("H: Home Gantry (Required)")
+            print("T: 1000 Step Test")
+            print("C: Toggle Gripper")
+            print("S: EMERGENCY STOP")
+            print("R: ENABLE MOVEIT STREAMING")
+            choice = input("Select Action: ").upper()
+
+            if choice == 'H':
+                self.streaming_unlocked = False
+                self.ser.write(b'H\n')
+            elif choice == 'T':
+                self.ser.write(b'T\n')
+            
+            elif choice == 'C':
+                if self.gripper:
+                    if self.gripper_state == 0:
+                        self.gripper.open()
+                        self.gripper_state = 1
+                        print("[Gripper] State: 1 (Opened)")
+                    else:
+                        self.gripper.close()
+                        self.gripper_state = 0
+                        print("[Gripper] State: 0 (Closed)")
+                else:
+                    print("Error: Gripper not connected!")
+                    
+            elif choice == 'S':
+                self.ser.write(b'S\n')
+                if self.gripper: self.gripper.stop()
+                self.is_ready = False
+                self.streaming_unlocked = False
+            elif choice == 'R':
+                if self.is_ready:
+                    print(">>> NOW FOLLOWING MOVEIT TRAJECTORIES <<<")
+                    self.streaming_unlocked = True
+                else:
+                    print("Error: You must Home 'H' first!")
 
     def listener_callback(self, msg):
         if self.is_ready and self.streaming_unlocked:
@@ -118,78 +145,29 @@ class SerialBridge(Node):
                 idx_x = msg.name.index('x_axis_joint')
                 idx_y = msg.name.index('y_axis_joint')
                 idx_z = msg.name.index('z_axis_lift_joint')
-                x, y, z = msg.position[idx_x], msg.position[idx_y], msg.position[idx_z]
+
+                x = msg.position[idx_x]
+                y = msg.position[idx_y]
+                z = msg.position[idx_z]
                 
                 command = f"X{x:.4f}Y{y:.4f}Z{z:.4f}\n"
-                if self.ser: self.ser.write(command.encode('utf-8'))
-            except (ValueError, IndexError):
-                pass
-
-    def web_ui_callback(self, msg):
-        cmd = msg.data.upper()
-        
-        if cmd == 'OPEN':
-            if self.gripper: self.gripper.open()
-        
-        elif cmd == 'CLOSE':
-            if self.gripper: self.gripper.close()
-        
-        elif cmd == 'HOME':
-            self.streaming_unlocked = False
-            if self.ser: self.ser.write(b'H\n')
-            status_msg = String()
-            status_msg.data = "HOMING..."
-            self.status_pub.publish(status_msg)
-            self.web_log("[SYSTEM] Homing sequence initiated...")
-            
-        elif cmd == 'STREAM_ON':
-            if self.is_ready:
-                self.streaming_unlocked = True
-                self.web_log("[SYSTEM] >>> NOW FOLLOWING MOVEIT TRAJECTORIES <<<")
-            else:
-                self.web_log("[ERROR] You must Home the gantry first!")
+                self.ser.write(command.encode('utf-8'))
                 
-        elif cmd == 'S':
-            if self.ser: self.ser.write(b'S\n')
-            if self.gripper: self.gripper.stop()
-            self.is_ready = False
-            self.streaming_unlocked = False
-            self.web_log("[WARNING] EMERGENCY STOP ACTIVATED! Motors halted.")
-            status_msg = String()
-            status_msg.data = "STOPPED"
-            self.status_pub.publish(status_msg)
+                print(f"Sent to Arduino: {command.strip()}", end='\r')
 
-        elif cmd.startswith('JOG_'):
-            if not self.is_ready:
-                self.web_log("[ERROR] Cannot jog: Gantry not homed!")
-                return
-                
-            if self.streaming_unlocked:
-                self.web_log("[WARNING] Stop MoveIt stream ('S') before manually jogging!")
-                return
-
-            # Send compact commands to the Arduino
-            if self.ser:
-                if cmd == 'JOG_X+': self.ser.write(b'JX+\n')
-                elif cmd == 'JOG_X-': self.ser.write(b'JX-\n')
-                elif cmd == 'JOG_Y+': self.ser.write(b'JY+\n')
-                elif cmd == 'JOG_Y-': self.ser.write(b'JY-\n')
-                elif cmd == 'JOG_STOP': self.ser.write(b'JS\n')
+            except (ValueError, IndexError) as e:
+                print(f"Waiting for joints... Error: {e}")
 
 def main(args=None):
     rclpy.init(args=args)
     node = SerialBridge()
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        if node.gripper:
-            node.gripper.disconnect()
-        if node.ser:
-            node.ser.close()
-        node.destroy_node()
-        rclpy.shutdown()
+    rclpy.spin(node)
+    
+    if node.gripper:
+        node.gripper.disconnect()
+        
+    node.destroy_node()
+    rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

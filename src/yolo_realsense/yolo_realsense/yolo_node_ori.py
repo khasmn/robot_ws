@@ -146,17 +146,14 @@ class YoloDistanceNode(Node):
 
                         # --- Everything below is identical to version 1 ---
                         # dist is in mm, kept as-is to preserve v1 scale
-                        dist_m = dist 
+                        dist_m = dist
                         X_temp = dist_m * (x_center - self.intrinsics['ppx']) / self.intrinsics['fx']
                         Y_temp = dist_m * (y_center - self.intrinsics['ppy']) / self.intrinsics['fy']
                         Z_temp = dist_m
 
-                        # Default values in case transform fails
-                        # Default values in case transform fails
                         X_tr = X_temp
                         Y_tr = Y_temp
                         Z_tr = Z_temp
-                        object_base_z = None
 
                         try:
                             pt = PointStamped()
@@ -166,40 +163,26 @@ class YoloDistanceNode(Node):
                             pt.point.y = float(Y_temp)
                             pt.point.z = float(Z_temp)
 
-                            # X/Y from gripper frame (same as before)
-                            t_gripper = self.tf_buffer.lookup_transform(
+                            t = self.tf_buffer.lookup_transform(
                                 'actual_gripper',
                                 pt.header.frame_id,
                                 rclpy.time.Time()
                             )
-                            pt_gripper = tf2_geometry_msgs.do_transform_point(pt, t_gripper)
-                            X_tr = pt_gripper.point.x
-                            Y_tr = pt_gripper.point.y
 
-                            # Z from base_link frame (stable vertical axis)
-                            t_base = self.tf_buffer.lookup_transform(
-                                'base_link',
-                                pt.header.frame_id,
-                                rclpy.time.Time()
-                            )
-                            pt_base = tf2_geometry_msgs.do_transform_point(pt, t_base)
-                            object_base_z = pt_base.point.z
+                            pt_transformed = tf2_geometry_msgs.do_transform_point(pt, t)
+                            X_tr = pt_transformed.point.x
+                            Y_tr = pt_transformed.point.y
+                            Z_tr = pt_transformed.point.z
 
                         except Exception as e:
                             self.get_logger().warn(f"TF2 transform failed: {e}", throttle_duration_sec=2.0)
 
-                        # Compute Z joint target
-                        gripper_z_at_zero = 200  # meters, from tf2_echo at joint=0
-                        if object_base_z is not None:
-                            z_joint_target = gripper_z_at_zero - object_base_z
-                        else:
-                            z_joint_target = 0.0  # fallback if TF failed
-
                         point_msg = Point()
                         point_msg.x = float(Y_tr)
                         point_msg.y = float(X_tr - 220)
-                        point_msg.z = float(z_joint_target)  # publish in mm
+                        point_msg.z = float(Z_tr)
                         self.coord_pub.publish(point_msg)
+
                         if self.show_view:
                             if getattr(result, 'masks', None) is not None and i < len(result.masks.xy):
                                 seg = result.masks.xy[i]
@@ -220,7 +203,7 @@ class YoloDistanceNode(Node):
                                 2
                             )
 
-                            coord_text = f"Gripper X:{int(Y_tr)} Y:{int(X_tr - 220)} Z:{int(z_joint_target)}"
+                            coord_text = f"Gripper X:{int(Y_tr)} Y:{int(X_tr - 220)} Z:{int(Z_tr)}"
                             cv2.putText(
                                 vis_image,
                                 coord_text,

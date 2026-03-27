@@ -1,7 +1,9 @@
 import rclpy
+from rclpy.action import ActionClient
 from rclpy.node import Node
 
 from geometry_msgs.msg import Point
+from moveit_msgs.action import ExecuteTrajectory
 from moveit_msgs.msg import Constraints, JointConstraint, MotionPlanRequest, RobotState
 from moveit_msgs.srv import GetMotionPlan
 from sensor_msgs.msg import JointState
@@ -15,9 +17,11 @@ class YoloToMoveItNode(Node):
         self.create_subscription(JointState, '/joint_states', self.joint_state_callback, 10)
 
         self.moveit_plan_client = self.create_client(GetMotionPlan, '/plan_kinematic_path')
+        self.execute_client = ActionClient(self, ExecuteTrajectory, '/execute_trajectory')
 
         self.latest_joint_state = None
         self.plan_in_flight = False
+        self.execution_in_flight = False
         self.last_planned_targets = None
 
         self.joint_limits = {
@@ -34,7 +38,7 @@ class YoloToMoveItNode(Node):
             self.latest_joint_state = msg
 
     def yolo_callback(self, msg: Point):
-        if self.plan_in_flight:
+        if self.plan_in_flight or self.execution_in_flight:
             return
 
         if self.latest_joint_state is None or not self.latest_joint_state.name:
@@ -125,10 +129,57 @@ class YoloToMoveItNode(Node):
             if error_code == 1:
                 points = len(response.motion_plan_response.trajectory.joint_trajectory.points)
                 self.get_logger().info(f'MoveIt planning succeeded with {points} trajectory points.')
+                self.execute_trajectory(response.motion_plan_response.trajectory)
             else:
+                self.last_planned_targets = None
                 self.get_logger().error(f'MoveIt planning failed with error code {error_code}.')
         except Exception as exc:
+            self.last_planned_targets = None
             self.get_logger().error(f'MoveIt planning request failed: {exc}')
+
+    def execute_trajectory(self, trajectory):
+        if not self.execute_client.wait_for_server(timeout_sec=1.0):
+            self.last_planned_targets = None
+            self.get_logger().error('MoveIt execute action /execute_trajectory is not available.')
+            return
+
+        goal = ExecuteTrajectory.Goal()
+        goal.trajectory = trajectory
+
+        self.execution_in_flight = True
+        send_goal_future = self.execute_client.send_goal_async(goal)
+        send_goal_future.add_done_callback(self.execute_goal_response_callback)
+        self.get_logger().info('Sent planned trajectory to MoveIt execution.')
+
+    def execute_goal_response_callback(self, future):
+        try:
+            goal_handle = future.result()
+            if not goal_handle.accepted:
+                self.execution_in_flight = False
+                self.last_planned_targets = None
+                self.get_logger().error('MoveIt execution goal was rejected.')
+                return
+
+            result_future = goal_handle.get_result_async()
+            result_future.add_done_callback(self.execute_result_callback)
+        except Exception as exc:
+            self.execution_in_flight = False
+            self.last_planned_targets = None
+            self.get_logger().error(f'Failed to send execution goal: {exc}')
+
+    def execute_result_callback(self, future):
+        self.execution_in_flight = False
+        try:
+            result = future.result().result
+            error_code = result.error_code.val
+            if error_code == 1:
+                self.get_logger().info('MoveIt trajectory execution succeeded.')
+            else:
+                self.last_planned_targets = None
+                self.get_logger().error(f'MoveIt trajectory execution failed with error code {error_code}.')
+        except Exception as exc:
+            self.last_planned_targets = None
+            self.get_logger().error(f'MoveIt trajectory execution request failed: {exc}')
 
 
 def main(args=None):
