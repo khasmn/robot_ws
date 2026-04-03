@@ -1,0 +1,16 @@
+joint_limits:
+  x_axis_joint:
+    has_velocity_limits: true
+    max_velocity: 1.0
+    has_acceleration_limits: true  # Change from false to true
+    max_acceleration: 2.0          # Change from 0 to 2.0
+  y_axis_joint:
+    has_velocity_limits: true
+    max_velocity: 1.0
+    has_acceleration_limits: true  # Change from false to true
+    max_acceleration: 2.0          # Change from 0 to 2.0
+  z_axis_lift_joint:
+    has_velocity_limits: true
+    max_velocity: 1.0
+    has_acceleration_limits: true  # Change from false to true
+    max_acceleration: 1.0          # Z usually needs a lower limit

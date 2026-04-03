@@ -1,0 +1,58 @@
+# ==========================================
+# ROS 2 Build Artifacts
+# ==========================================
+build/
+install/
+log/
+
+# ==========================================
+# Python & Virtual Environments
+# ==========================================
+venv/
+.venv/
+env/
+bin/
+lib/
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.tox/
+# Distribution / packaging
+node_modules/
+.eggs/
+*.egg-info/
+dist/
+
+# ==========================================
+# IDEs and Editors
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# ==========================================
+# OS Generated Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==========================================
+# Large Files & Models (Optional)
+# ==========================================
+# If you want to ignore large AI models to keep your repo small:
+# *.pt
+ *.onnx
+ *.weights

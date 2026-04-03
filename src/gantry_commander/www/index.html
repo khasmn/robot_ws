@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JEFFY | Terminal</title>
+    <script src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+    <style>
+        :root {
+            --bg-deep: #0a0a0b;
+            --card-bg: #141416;
+            --accent-lime: #d4ff3f;
+            --text-main: #ffffff;
+            --text-dim: #71717a;
+            --log-green: #00ff41;
+            --danger: #ef4444;
+            --border: #27272a;
+            --input-bg: #1c1c1f;
+        }
+
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-deep); color: var(--text-main); 
+            margin: 0; padding: 20px; height: 100vh; display: flex; flex-direction: column;
+            box-sizing: border-box; overflow: hidden;
+        }
+
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-shrink: 0; }
+        .logo { font-size: 20px; font-weight: 800; }
+        .logo span { color: var(--accent-lime); }
+
+        .main-layout { display: flex; flex: 1; gap: 15px; overflow: hidden; }
+        .controls-col { flex: 0 0 320px; display: flex; flex-direction: column; gap: 15px; overflow-y: auto; padding-right: 5px; }
+        .logs-col { flex: 1; display: flex; flex-direction: column; }
+
+        /* Custom Scrollbar for Sidebar */
+        .controls-col::-webkit-scrollbar { width: 4px; }
+        .controls-col::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+        .card { background: var(--card-bg); border-radius: 20px; padding: 18px; border: 1px solid var(--border); }
+        .card h2 { font-size: 11px; font-weight: 700; margin: 0 0 15px 0; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;}
+
+        /* PID Inputs */
+        .pid-group { display: flex; flex-direction: column; gap: 10px; }
+        .pid-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+        .pid-row label { font-size: 11px; font-weight: 600; color: var(--text-dim); width: 30px; }
+        .pid-row input, .pid-row select { 
+            background: var(--input-bg); border: 1px solid var(--border); color: #fff; 
+            padding: 8px; border-radius: 8px; font-size: 12px; flex: 1; outline: none;
+        }
+        .pid-row input:focus { border-color: var(--accent-lime); }
+
+        /* Button Styling */
+        .control-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+        .btn { 
+            background: #1c1c1f; color: var(--text-main); border: 1px solid var(--border); padding: 12px;
+            font-size: 14px; font-weight: 600; border-radius: 12px; cursor: pointer; transition: all 0.1s ease;
+        }
+        .btn:active { background: var(--accent-lime); color: #000; transform: scale(0.95); }
+        .btn-prime { background: var(--accent-lime); color: #000; border: none; font-size: 11px; font-weight: 700; }
+        .btn-danger { background: #2a1a1a; color: var(--danger); border: 1px solid #452727; font-weight: 800; grid-column: span 3; margin-top: 5px; }
+
+        /* Terminal Window */
+        #logContainer { flex: 1; background: #09090b; border-radius: 20px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+        .log-header { background: #141416; padding: 10px 20px; font-size: 10px; color: var(--text-dim); border-bottom: 1px solid var(--border); }
+        #logBox { flex: 1; padding: 15px; color: var(--log-green); font-family: 'JetBrains Mono', monospace; font-size: 12px; overflow-y: auto; line-height: 1.5; }
+
+        .speed-readout { background: #0e0e10; padding: 12px; border-radius: 12px; margin-top: 10px; display: flex; justify-content: space-between; font-family: monospace; font-size: 11px; color: var(--accent-lime); }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <div class="logo">KHA <span>PRIME</span></div>
+        <div id="status" style="font-size: 11px; color: var(--danger);">● SYSTEM OFFLINE</div>
+    </div>
+
+    <div class="main-layout">
+        <div class="controls-col">
+            <div class="card">
+                <h2>Gantry Precision Jog</h2>
+                <div class="control-grid">
+                    <div style="visibility:hidden"></div>
+                    <button class="btn" onclick="sendGantryCommand('JOG_Y+')">↑</button>
+                    <div style="visibility:hidden"></div>
+                    
+                    <button class="btn" onclick="sendGantryCommand('JOG_X-')">←</button>
+                    <button class="btn btn-prime" onclick="sendGantryCommand('HOME')">HOME</button>
+                    <button class="btn" onclick="sendGantryCommand('JOG_X+')">→</button>
+                    
+                    <div style="visibility:hidden"></div>
+                    <button class="btn" onclick="sendGantryCommand('JOG_Y-')">↓</button>
+                    <div style="visibility:hidden"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>PID Tuning Deck</h2>
+                <div class="pid-group">
+                    <div class="pid-row">
+                        <label>MTR</label>
+                        <select id="pid_motor">
+                            <option value="FL">Front Left (FL)</option>
+                            <option value="FR">Front Right (FR)</option>
+                            <option value="BL">Back Left (BL)</option>
+                            <option value="BR">Back Right (BR)</option>
+                        </select>
+                    </div>
+                    <div class="pid-row">
+                        <label>Kp</label>
+                        <input type="number" id="pid_kp" value="5.0" step="0.1">
+                    </div>
+                    <div class="pid-row">
+                        <label>Ki</label>
+                        <input type="number" id="pid_ki" value="0.0" step="0.1">
+                    </div>
+                    <div class="pid-row">
+                        <label>Kd</label>
+                        <input type="number" id="pid_kd" value="0.0" step="0.1">
+                    </div>
+                    <button class="btn btn-prime" style="margin-top: 10px;" onclick="callPidService()">Apply Parameters</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Omni Speed Control</h2>
+                <div class="control-grid">
+                    <button class="btn" onclick="adjustSpeed('z', 0.10)">↺</button>
+                    <button class="btn" onclick="adjustSpeed('x', 0.05)">↑</button>
+                    <button class="btn" onclick="adjustSpeed('z', -0.10)">↻</button>
+                    
+                    <button class="btn" onclick="adjustSpeed('y', 0.05)">←</button>
+                    <button class="btn" style="background:#331a1a; color:var(--danger);" onclick="fullStop()">■</button>
+                    <button class="btn" onclick="adjustSpeed('y', -0.05)">→</button>
+                    
+                    <div style="visibility:hidden"></div>
+                    <button class="btn" onclick="adjustSpeed('x', -0.05)">↓</button>
+                    <div style="visibility:hidden"></div>
+                </div>
+                <button class="btn btn-danger" onclick="fullStop()">EMERGENCY BRAKE</button>
+                <div class="speed-readout">
+                    <div>X: <span id="ui_x">0.00</span></div>
+                    <div>Y: <span id="ui_y">0.00</span></div>
+                    <div>Z: <span id="ui_z">0.00</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="logs-col">
+            <div id="logContainer">
+                <div class="log-header">LIVE TELEMETRY STREAM</div>
+                <div id="logBox">> Systems initialized...<br></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var ros = new ROSLIB.Ros({ url : 'ws://' + window.location.hostname + ':9090' });
+
+        ros.on('connection', () => { document.getElementById('status').innerText = '● SYSTEM ONLINE'; document.getElementById('status').style.color = 'var(--accent-lime)'; });
+        ros.on('close', () => { document.getElementById('status').innerText = '● SYSTEM OFFLINE'; document.getElementById('status').style.color = 'var(--danger)'; });
+
+        // --- TOPICS & SERVICES ---
+        var cmdTopic = new ROSLIB.Topic({ ros : ros, name : '/web_ui_cmd', messageType : 'std_msgs/String' });
+        var cmdVelTopic = new ROSLIB.Topic({ ros : ros, name : '/cmd_vel', messageType : 'geometry_msgs/TwistStamped' });
+        
+        var pidServiceClient = new ROSLIB.Service({
+            ros : ros,
+            name : '/ired/pid/tuning',
+            serviceType : 'ired_msgs/srv/PIDTuning'
+        });
+
+        // --- PID SERVICE CALL ---
+        function callPidService() {
+            var motor = document.getElementById('pid_motor').value;
+            var kp = parseFloat(document.getElementById('pid_kp').value);
+            var ki = parseFloat(document.getElementById('pid_ki').value);
+            var kd = parseFloat(document.getElementById('pid_kd').value);
+
+            logMsg(`Calling PID Service for ${motor}...`);
+
+            var request = new ROSLIB.ServiceRequest({
+                motor: motor,
+                kp: kp,
+                ki: ki,
+                kd: kd
+            });
+
+            pidServiceClient.callService(request, function(result) {
+                if (result.status) {
+                    logMsg(`<span style="color:var(--accent-lime)">[SUCCESS] PID updated for ${motor}</span>`);
+                } else {
+                    logMsg(`<span style="color:var(--danger)">[FAILED] Service rejected tuning for ${motor}</span>`);
+                }
+            }, function(error) {
+                logMsg(`<span style="color:var(--danger)">[ERROR] Service call failed: ${error}</span>`);
+            });
+        }
+
+        // --- CORE LOGIC ---
+        var targetVel = { x: 0.0, y: 0.0, z: 0.0 };
+        const LIMITS = { x: 0.35, y: 0.35, z: 0.60 };
+
+        function sendGantryCommand(val) {
+            cmdTopic.publish(new ROSLIB.Message({ data: val }));
+            logMsg("Gantry Jog: " + val);
+        }
+
+        function adjustSpeed(axis, amount) {
+            targetVel[axis] += amount;
+            if (Math.abs(targetVel[axis]) > LIMITS[axis]) targetVel[axis] = targetVel[axis] > 0 ? LIMITS[axis] : -LIMITS[axis];
+            updateUI();
+        }
+
+        function fullStop() {
+            targetVel = { x: 0.0, y: 0.0, z: 0.0 };
+            updateUI();
+            sendGantryCommand('S');
+            publishVel();
+            logMsg("HALT EXECUTED");
+        }
+
+        function updateUI() {
+            document.getElementById('ui_x').innerText = targetVel.x.toFixed(2);
+            document.getElementById('ui_y').innerText = targetVel.y.toFixed(2);
+            document.getElementById('ui_z').innerText = targetVel.z.toFixed(2);
+        }
+
+        function logMsg(msg) {
+            var lb = document.getElementById('logBox');
+            lb.innerHTML += `<span>[${new Date().toLocaleTimeString()}]</span> ${msg}<br>`;
+            lb.scrollTop = lb.scrollHeight;
+        }
+
+        function publishVel() {
+            var msg = new ROSLIB.Message({
+                header: { stamp: {sec: 0, nanosec: 0}, frame_id: 'base_link' },
+                twist: { linear: { x: targetVel.x, y: targetVel.y, z: 0.0 }, angular: { x: 0.0, y: 0.0, z: targetVel.z } }
+            });
+            cmdVelTopic.publish(msg);
+        }
+
+        setInterval(publishVel, 100);
+    </script>
+</body>
+</html>
