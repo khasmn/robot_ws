@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.action import ActionClient
 from rclpy.node import Node
-import threading  # <--- Added to handle the settle delay
+import threading
 
 from geometry_msgs.msg import Point
 from moveit_msgs.action import ExecuteTrajectory
@@ -15,21 +15,25 @@ class YoloToMoveItNode(Node):
     def __init__(self):
         super().__init__('yolo_to_moveit_node')
 
-        # --- Robot ready gate ---
-        # YOLO coordinates are ignored until serial_bridge publishes /robot_ready
+        # --- Robot State Gates ---
+        # 1. Hardware ready homing finished
         self.robot_is_ready = False
+        # 2. Sequence ready (parking finished) -> starts LOCKED
+        self.grabbing_active = False
 
         # --- Subscribers ---
         self.create_subscription(Point,      '/yolo/coordinates', self.yolo_callback,        10)
         self.create_subscription(JointState, '/joint_states',     self.joint_state_callback,  10)
         self.create_subscription(String,     '/robot_ready',      self.robot_ready_callback,  10)
+        self.create_subscription(String,     '/start_grabbing',   self.start_grabbing_callback, 10)
 
         # --- MoveIt clients ---
         self.moveit_plan_client = self.create_client(GetMotionPlan, '/plan_kinematic_path')
         self.execute_client     = ActionClient(self, ExecuteTrajectory, '/execute_trajectory')
 
-        # --- Gripper command publisher ---
-        self.gripper_pub = self.create_publisher(String, '/gripper_command', 10)
+        # --- Publishers ---
+        self.gripper_pub       = self.create_publisher(String, '/gripper_command', 10)
+        self.task_complete_pub = self.create_publisher(String, '/gantry_task_complete', 10)
 
         # --- State ---
         self.latest_joint_state   = None
@@ -51,18 +55,21 @@ class YoloToMoveItNode(Node):
 
         self.get_logger().info(
             'YoloToMoveItNode started. '
-            'Waiting for /robot_ready before accepting YOLO targets...'
+            'Waiting for homing AND parking to complete before moving.'
         )
 
     # ------------------------------------------------------------------
-    # Robot ready gate — published by serial_bridge after homing + self-test
+    # State Gates
     # ------------------------------------------------------------------
     def robot_ready_callback(self, msg: String):
         if msg.data == 'ready' and not self.robot_is_ready:
             self.robot_is_ready = True
-            self.get_logger().info(
-                '=== /robot_ready received. Now accepting YOLO targets. ==='
-            )
+            self.get_logger().info('=== Hardware Homing Complete ===')
+
+    def start_grabbing_callback(self, msg: String):
+        if msg.data == 'start' and not self.grabbing_active:
+            self.grabbing_active = True
+            self.get_logger().info('=== Parking Finished! Gantry unlocked and seeking targets. ===')
 
     # ------------------------------------------------------------------
     # Joint-state cache
@@ -88,8 +95,6 @@ class YoloToMoveItNode(Node):
 
     # ------------------------------------------------------------------
     # MoveIt planning request
-    # is_final=True  → gripper fires when this execution completes
-    # is_final=False → intermediate waypoint (safe-Z transfer)
     # ------------------------------------------------------------------
     def _request_plan_for_target(self, joint_targets: dict, is_final: bool = False):
         self.is_final_target = is_final
@@ -100,7 +105,7 @@ class YoloToMoveItNode(Node):
         mpr.allowed_planning_time = 2.0
         mpr.num_planning_attempts = 3
         
-        # [FIX]: Limit speed and acceleration so it approaches carefully and doesn't overshoot
+        # Limit speed and acceleration
         mpr.max_velocity_scaling_factor = 0.3      
         mpr.max_acceleration_scaling_factor = 0.3  
 
@@ -134,16 +139,23 @@ class YoloToMoveItNode(Node):
         )
 
     # ------------------------------------------------------------------
-    # YOLO callback — entry point for new object coordinates
+    # YOLO callback
     # ------------------------------------------------------------------
     def yolo_callback(self, msg: Point):
 
-        # --- Gate: ignore everything until homing + self-test is done ---
+        # --- Gate 1: Hardware Check ---
         if not self.robot_is_ready:
             self.get_logger().info(
-                'YOLO target received but robot is not ready yet. '
                 'Waiting for homing to complete...',
-                throttle_duration_sec=2.0,
+                throttle_duration_sec=3.0,
+            )
+            return
+
+        # --- Gate 2: Sequence Check (LOCKED until parking finishes) ---
+        if not self.grabbing_active:
+            self.get_logger().info(
+                'Gantry locked. Waiting for parking node to publish "start" to /start_grabbing...',
+                throttle_duration_sec=3.0,
             )
             return
 
@@ -152,8 +164,7 @@ class YoloToMoveItNode(Node):
 
         if self.latest_joint_state is None or not self.latest_joint_state.name:
             self.get_logger().warn(
-                'No /joint_states received yet. Start robot_state/controller_manager '
-                'with joint_state_broadcaster before sending YOLO targets.',
+                'No /joint_states received yet.',
                 throttle_duration_sec=2.0,
             )
             return
@@ -162,14 +173,12 @@ class YoloToMoveItNode(Node):
             self.get_logger().error('MoveIt planning service /plan_kinematic_path is not available.')
             return
 
-        # YOLO publishes millimetres → convert to metres for MoveIt
         joint_targets = {
             'x_axis_joint':      msg.x / 1000.0,
             'y_axis_joint':      msg.y / 1000.0,
             'z_axis_lift_joint': abs(msg.z) / 1000.0,
         }
 
-        # Skip if new target is too close to the last planned one
         if self.last_planned_targets is not None:
             max_delta = max(
                 abs(joint_targets[n] - self.last_planned_targets[n])
@@ -178,7 +187,6 @@ class YoloToMoveItNode(Node):
             if max_delta < self.replan_threshold:
                 return
 
-        # Bounds check
         violations = []
         for joint_name, value in joint_targets.items():
             lower, upper = self.joint_limits[joint_name]
@@ -186,9 +194,7 @@ class YoloToMoveItNode(Node):
                 violations.append(f'{joint_name}={value:.4f} not in [{lower:.4f}, {upper:.4f}]')
         if violations:
             self.get_logger().warn(
-                'Skipping out-of-bounds YOLO target. '
-                f'raw=({msg.x:.3f}, {msg.y:.3f}, {msg.z:.3f}) mm; '
-                + '; '.join(violations),
+                'Skipping out-of-bounds YOLO target.',
                 throttle_duration_sec=1.0,
             )
             return
@@ -200,7 +206,6 @@ class YoloToMoveItNode(Node):
             f'z={joint_targets["z_axis_lift_joint"]:.4f}'
         )
 
-        # Decide whether a safe-Z intermediate waypoint is needed
         current_positions  = self._joint_positions_from_state()
         self.pending_targets = []
 
@@ -220,12 +225,7 @@ class YoloToMoveItNode(Node):
                     'z_axis_lift_joint': self.safe_transfer_z,
                 }
                 self.pending_targets.append(safe_target)
-                self.get_logger().info(
-                    f'Large XY jump detected; inserting safe-Z transfer '
-                    f'(z={self.safe_transfer_z:.4f}) before final target.'
-                )
                 
-                # [FIX]: Trigger the gripper to OPEN right as it begins to lift up for a new attempt
                 self.get_logger().info('Lifting up for new attempt — opening gripper to prepare.')
                 self._trigger_gripper('open')
 
@@ -245,15 +245,11 @@ class YoloToMoveItNode(Node):
             response   = future.result()
             error_code = response.motion_plan_response.error_code.val
             if error_code == 1:
-                points = len(response.motion_plan_response.trajectory.joint_trajectory.points)
-                self.get_logger().info(f'MoveIt planning succeeded with {points} trajectory points.')
                 self.execute_trajectory(response.motion_plan_response.trajectory)
             else:
                 self._reset_state()
-                self.get_logger().error(f'MoveIt planning failed with error code {error_code}.')
         except Exception as exc:
             self._reset_state()
-            self.get_logger().error(f'MoveIt planning request raised exception: {exc}')
 
     # ------------------------------------------------------------------
     # Trajectory execution
@@ -261,16 +257,14 @@ class YoloToMoveItNode(Node):
     def execute_trajectory(self, trajectory):
         if not self.execute_client.wait_for_server(timeout_sec=1.0):
             self._reset_state()
-            self.get_logger().error('MoveIt execute action /execute_trajectory is not available.')
             return
 
-        goal           = ExecuteTrajectory.Goal()
+        goal            = ExecuteTrajectory.Goal()
         goal.trajectory = trajectory
 
         self.execution_in_flight = True
         send_goal_future = self.execute_client.send_goal_async(goal)
         send_goal_future.add_done_callback(self.execute_goal_response_callback)
-        self.get_logger().info('Sent planned trajectory to MoveIt for execution.')
 
     def execute_goal_response_callback(self, future):
         try:
@@ -278,14 +272,12 @@ class YoloToMoveItNode(Node):
             if not goal_handle.accepted:
                 self.execution_in_flight = False
                 self._reset_state()
-                self.get_logger().error('MoveIt execution goal was rejected.')
                 return
             result_future = goal_handle.get_result_async()
             result_future.add_done_callback(self.execute_result_callback)
         except Exception as exc:
             self.execution_in_flight = False
             self._reset_state()
-            self.get_logger().error(f'Failed to send execution goal: {exc}')
 
     def execute_result_callback(self, future):
         self.execution_in_flight = False
@@ -295,29 +287,20 @@ class YoloToMoveItNode(Node):
 
             if error_code == 1:
                 if self.pending_targets:
-                    # More waypoints remain — continue motion sequence
                     next_target = self.pending_targets.pop(0)
                     is_final    = (len(self.pending_targets) == 0)
-                    self.get_logger().info(
-                        f'Intermediate motion succeeded. Planning next step [final={is_final}].'
-                    )
                     self._request_plan_for_target(next_target, is_final=is_final)
                 else:
-                    # [FIX]: Arm is at destination. Wait 1.5 seconds to settle before closing the gripper!
-                    self.get_logger().info(
-                        'MoveIt execution succeeded. '
-                        'Robot at destination — waiting 1.5s to settle before closing.'
-                    )
+                    self.get_logger().info('Robot at destination — waiting 1.5s to settle before closing.')
                     threading.Timer(1.5, self._trigger_gripper, args=['close']).start()
+
+                    # Wait for settle (1.5s) + grab duration (3.5s) + buffer (0.5s) = 5.5s total
+                    threading.Timer(5.5, self._publish_task_complete).start()
             else:
                 self._reset_state()
-                self.get_logger().error(
-                    f'MoveIt trajectory execution failed with error code {error_code}.'
-                )
 
         except Exception as exc:
             self._reset_state()
-            self.get_logger().error(f'MoveIt trajectory execution raised exception: {exc}')
 
     # ------------------------------------------------------------------
     # Gripper helpers
@@ -327,6 +310,18 @@ class YoloToMoveItNode(Node):
         msg.data = command
         self.gripper_pub.publish(msg)
         self.get_logger().info(f"Published gripper command: '{command}'")
+
+    # ------------------------------------------------------------------
+    # Next-process signal and LOCK
+    # ------------------------------------------------------------------
+    def _publish_task_complete(self):
+        # [NEW]: Lock the gantry so it ignores further YOLO points!
+        self.grabbing_active = False 
+        
+        msg = String()
+        msg.data = 'grab_finished'
+        self.task_complete_pub.publish(msg)
+        self.get_logger().info('=== Published "grab_finished". Gantry is now LOCKED. ===')
 
     # ------------------------------------------------------------------
     # Utility
